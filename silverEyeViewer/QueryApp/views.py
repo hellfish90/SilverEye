@@ -5,7 +5,7 @@ from django.shortcuts import render
 from pymongo import MongoClient
 
 
-def list_twitter_users(request):
+def list_twitter_users(request, limitnumber=0, maxnumber=150):
 
     #Dev
     client = MongoClient('192.168.101.73', 27017)
@@ -13,7 +13,10 @@ def list_twitter_users(request):
     #Prod
     #client = MongoClient('127.0.0.1', 27017)
 
-    data = client.SilverEye.twitterUser.find()
+    limitnumber = int(limitnumber)
+    maxnumber = int(maxnumber)
+
+    data = client.SilverEye.twitterUser.find()[limitnumber:maxnumber]
 
     print data[0]['name']
 
