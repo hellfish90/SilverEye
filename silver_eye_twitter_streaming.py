@@ -1,4 +1,9 @@
-__author__ = 'Marc Solé Farré'
+
+#!/usr/bin/python
+
+# -*- coding: utf-8 -*-
+
+__author__ = 'Marc Sole Farre'
 
 """
 For do this program I use the next code of Jordi Vilaplana.
