@@ -22,6 +22,6 @@ def list_twitter_users(request, limitnumber=0, maxnumber=150):
 
     data = client.SilverEye.twitterUser.find()[limitnumber:maxnumber]
 
-    print data[0]['name']
+    #print data[0]['name']
 
     return render(request, 'listUsersTwitter.html', {'users': data})
