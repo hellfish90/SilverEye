@@ -1,5 +1,4 @@
-
-#!/usr/bin/python
+# !/usr/bin/python
 
 # -*- coding: utf-8 -*-
 
@@ -18,6 +17,7 @@ import pymongo
 from pymongo import MongoClient
 import json
 import logging
+import datetime
 
 logging.basicConfig(
     filename='silver_eye_twitter_streaming.log',
@@ -37,11 +37,14 @@ ignored_languages = ["ja", "in", "tr", "tl", "ar", "ru", "th"]
 client = None
 db = None
 
+
 class CustomStreamListener(tweepy.StreamListener):
     def __init__(self, api):
         self.api = api
         super(tweepy.StreamListener, self).__init__()
         self.db = pymongo.MongoClient().SilverEye
+        self.tweets_counter = 0
+        self.last_time = None
 
     def on_data(self, data):
         tweet = json.loads(data)
@@ -57,6 +60,17 @@ class CustomStreamListener(tweepy.StreamListener):
             return True
 
         user = tweet['user']
+
+        self.tweets_counter += 1
+
+        if self.last_time == None:
+            self.last_time = datetime.datetime.now().hour
+
+        if self.last_time != datetime.datetime.now().hour:
+            self.last_time = datetime.datetime.now().hour
+            logging.debug('Tweets: ' + self.tweets_counter)
+            self.tweets_counter = 0
+
 
         print tweet
         try:
@@ -81,7 +95,8 @@ class CustomStreamListener(tweepy.StreamListener):
     def on_timeout(self):
         logging.error('CustomStreamListener on_timeout')
         logging.error("------------------")
-        return True # Don't kill the stream
+        return True  # Don't kill the stream
+
 
 if __name__ == '__main__':
     logging.debug('silver_eye_twitter_streaming.py starting ...')
