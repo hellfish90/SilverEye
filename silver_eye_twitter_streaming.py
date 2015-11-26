@@ -107,7 +107,7 @@ if __name__ == '__main__':
         try:
             logging.debug('Connecting to Twitter stream ...')
             stream = tweepy.streaming.Stream(auth, CustomStreamListener(api))
-            stream.filter( locations = [-180, -90, 180, 90],languages=["es"])
+            stream.filter(languages=["es"])
         except Exception as e:
             # Oh well, reconnect and keep trucking
             logging.error(e.__class__)
