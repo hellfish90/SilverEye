@@ -71,8 +71,6 @@ class CustomStreamListener(tweepy.StreamListener):
             logging.debug('Tweets: ' + self.tweets_counter)
             self.tweets_counter = 0
 
-
-        print tweet
         try:
             self.db.twitterStatus.update(tweet, tweet, upsert=True)
             self.db.twitterUser.update({"screen_name": tweet['user']['screen_name']}, user, upsert=True)
@@ -122,7 +120,7 @@ if __name__ == '__main__':
         try:
             logging.debug('Connecting to Twitter stream ...')
             stream = tweepy.streaming.Stream(auth, CustomStreamListener(api))
-            stream.filter(languages=["es"])
+            stream.filter(locations = [-12.885216, 34.998484, 3.766846, 43.564009],languages=["es"])
         except Exception as e:
             # Oh well, reconnect and keep trucking
             logging.error(e.__class__)
