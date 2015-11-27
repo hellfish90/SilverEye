@@ -68,7 +68,8 @@ class CustomStreamListener(tweepy.StreamListener):
 
         if self.last_time != datetime.datetime.now().hour:
             self.last_time = datetime.datetime.now().hour
-            logging.debug('Tweets: ' + self.tweets_counter)
+            logging.warning('Tweets: ' + str(self.tweets_counter))
+            #print self.tweets_counter
             self.tweets_counter = 0
 
         try:
