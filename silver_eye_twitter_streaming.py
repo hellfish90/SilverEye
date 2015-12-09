@@ -53,6 +53,7 @@ class CustomStreamListener(tweepy.StreamListener):
         # https://dev.twitter.com/streaming/overview/messages-types#limit_notices
         if tweet.get('limit'):
             logging.debug('Limit notice received: ' + str(tweet['limit']['track']))
+            logging.debug(datetime.datetime.now())
             self.db.twitterLimitNotice.insert(tweet)
             return True
 
@@ -68,8 +69,7 @@ class CustomStreamListener(tweepy.StreamListener):
 
         if self.last_time != datetime.datetime.now().hour:
             self.last_time = datetime.datetime.now().hour
-            self.db.twitterCounter.update({"Collection": "EHBILDU"}, {"datetime": datetime.datetime.now()},
-                                          {"num": self.tweets_counter}, upsert=True)
+            self.db.twitterCounter.insert({"Collection": "EHBILDU", "datetime": datetime.datetime.now(), "num": self.tweets_counter})
             #print self.tweets_counter
             self.tweets_counter = 0
 
@@ -79,6 +79,7 @@ class CustomStreamListener(tweepy.StreamListener):
         except Exception as e:
             # Oh well, reconnect and keep trucking
             logging.error("On save to db:")
+            logging.error(datetime.datetime.now())
             logging.error(e.__class__)
             logging.error(e)
             logging.error("------------------")
@@ -89,17 +90,20 @@ class CustomStreamListener(tweepy.StreamListener):
     def on_error(self, status):
         logging.error('CustomStreamListener on_error')
         logging.error(status)
+        logging.error(datetime.datetime.now())
         logging.error("------------------")
         return True
 
     def on_timeout(self):
         logging.error('CustomStreamListener on_timeout')
+        logging.error(datetime.datetime.now())
         logging.error("------------------")
         return True  # Don't kill the stream
 
 
 if __name__ == '__main__':
     logging.debug('silver_eye_twitter_streaming.py starting ...')
+    logging.error(datetime.datetime.now())
     logging.debug("------------------")
 
     # Load configuration
