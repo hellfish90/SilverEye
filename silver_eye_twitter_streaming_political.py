@@ -207,7 +207,7 @@ class CustomStreamListener(tweepy.StreamListener):
         return True
 
     def on_error(self, status):
-        if status == "420":
+        if status == 420:
             logging.error('RATE LIMITED')
             logging.error(datetime.datetime.now())
             logging.error("------------------")
