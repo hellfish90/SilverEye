@@ -5,5 +5,6 @@ import views
 
 urlpatterns = [
     url(r'^listusers/(?P<limitnumber>\w+)/(?P<maxnumber>\w+)$', views.list_twitter_users),
+    url(r'^liststatus/(?P<limitnumber>\w+)/(?P<maxnumber>\w+)$', views.list_twitter_status),
 ]
 

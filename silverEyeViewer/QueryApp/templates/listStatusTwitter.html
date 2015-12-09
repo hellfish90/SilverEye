@@ -1,0 +1,9 @@
+    {% for tweet in status %}
+    <ul class="collection with-header">
+        <li class="collection-header deep-orange accent-1"><h5>{{tweet.text}}</h5></li>
+        <li class="collection-header deep-orange accent-1"><h5>{{tweet.place.country}}</h5></li>
+        <li class="collection-header deep-orange accent-1"><h5>{{tweet.place.full_name}}</h5></li>
+        <li class="collection-header deep-orange accent-1"><h5>{{tweet.created_at}}</h5></li>
+        <li class="collection-header deep-orange accent-1"><h5>________________________</h5></li>
+    </ul>
+    {% endfor %}

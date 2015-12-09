@@ -25,3 +25,21 @@ def list_twitter_users(request, limitnumber=0, maxnumber=150):
     #print data[0]['name']
 
     return render(request, 'listUsersTwitter.html', {'users': data})
+
+
+def list_twitter_status(request, limitnumber=0, maxnumber=150):
+
+    #Dev
+    client = MongoClient('192.168.101.73', 27017)
+
+    #Prod
+    #client = MongoClient('127.0.0.1', 27017)
+
+    limitnumber = int(limitnumber)
+    maxnumber = int(maxnumber)
+
+    data = client.SilverEye.twitterStatus.find()[limitnumber:maxnumber]
+
+    print data[0]['text']
+
+    return render(request, 'listStatusTwitter.html', {'status': data})

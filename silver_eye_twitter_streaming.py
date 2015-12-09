@@ -68,7 +68,8 @@ class CustomStreamListener(tweepy.StreamListener):
 
         if self.last_time != datetime.datetime.now().hour:
             self.last_time = datetime.datetime.now().hour
-            logging.warning('Tweets: ' + str(self.tweets_counter))
+            self.db.twitterCounter.update({"Collection": "EHBILDU"}, {"datetime": datetime.datetime.now()},
+                                          {"num": self.tweets_counter}, upsert=True)
             #print self.tweets_counter
             self.tweets_counter = 0
 
