@@ -31,92 +31,92 @@ consumer_key = ""
 consumer_secret = ""
 database_name = ""
 
-ciudadanos = ["@GirautaOficial" or
-            "#AlbertRivera" or
-            "@Albert_Rivera" or
-            "@CiudadanosCs" or
-            "#RutaCiudadana" or
-            "#ConIlusion" or
-            "@sdelcampocs" or
-            "#Ilusión" or
-            "#Ciudadanos" or
-            "@InesArrimadas" or
-            "#AlbertPresidente"]
+ciudadanos = [u"@GirautaOficial" or
+            u"#AlbertRivera" or
+            u"@Albert_Rivera" or
+            u"@CiudadanosCs" or
+            u"#RutaCiudadana" or
+            u"#ConIlusion" or
+            u"@sdelcampocs" or
+            u"#Ilusión" or
+            u"#Ciudadanos" or
+            u"@InesArrimadas" or
+            u"#AlbertPresidente"]
 
-democracia_llibertat = ["@ConvergenciaCAT" or
-            "@DemocratesCAT" or
-            "@reagrupament" or
-            "#possible" or
-            "@20dl_cat" or
-            "@joseprull" or
-            "@joanbague" or
-            "@peresalo68" or
-            "@Ferran_Bel" or
-            "@franceschoms"]
+democracia_llibertat = [u"@ConvergenciaCAT" or
+            u"@DemocratesCAT" or
+            u"@reagrupament" or
+            u"#possible" or
+            u"@20dl_cat" or
+            u"@joseprull" or
+            u"@joanbague" or
+            u"@peresalo68" or
+            u"@Ferran_Bel" or
+            u"@franceschoms"]
 
-ehbildu = ["@ehbildu" or
-            "#BilduErabakira" or
-            "#BilduErabakira" or
-            "@ehbildu_legebil"]
+ehbildu = [u"@ehbildu" or
+            u"#BilduErabakira" or
+            u"#BilduErabakira" or
+            u"@ehbildu_legebil"]
 
-erc = ["ERC" or
-            "#SomRepública" or
-            "@Esquerra_ERC" or
-            "@GabrielRufian" or
-            "@Esquerra_ERC" or
-            "@JoanTarda" or
-            "@junqueras" or
-            "@MartaRovira"]
+erc = [u"ERC" or
+            u"#SomRepública" or
+            u"@Esquerra_ERC" or
+            u"@GabrielRufian" or
+            u"@Esquerra_ERC" or
+            u"@JoanTarda" or
+            u"@junqueras" or
+            u"@MartaRovira"]
 
-podemos = ["#UNPAISCONTIGO" or
-            "@ahorapodemos" or
-            "#Un6Dcontigo" or
-            "#6DHagamosHistoria" or
-            "@Pablo_Iglesias_" or
-            "@AdaColau" or
-            "@VickyRosell" or
-            "#LeyDeImpunidad"]
+podemos = [u"#UNPAISCONTIGO" or
+            u"@ahorapodemos" or
+            u"#Un6Dcontigo" or
+            u"#6DHagamosHistoria" or
+            u"@Pablo_Iglesias_" or
+            u"@AdaColau" or
+            u"@VickyRosell" or
+            u"#LeyDeImpunidad"]
 
-pp = ["partidopopular" or
-            "partido popular"or
-            "pp"or
-            "#PP"or
-            "#EspañaEnSerio"or
-            "@marianorajoy"or
-            "@AlfonsoAlonsoPP"or
-            "@PPopular"or
-            "#VotaPP"or
-            "@Sorayapp"or
-            "@mdcospedal"or
-            "pablocasado_"or
-            "#YoVotoPP"or
-            "#EmpleoEnSerio"or
-            "@NNGG_Es"]
+pp = [u"partidopopular" or
+            u"partido popular"or
+            u"pp"or
+            u"#PP"or
+            u"#EspañaEnSerio"or
+            u"@marianorajoy"or
+            u"@AlfonsoAlonsoPP"or
+            u"@PPopular"or
+            u"#VotaPP"or
+            u"@Sorayapp"or
+            u"@mdcospedal"or
+            u"pablocasado_"or
+            u"#YoVotoPP"or
+            u"#EmpleoEnSerio"or
+            u"@NNGG_Es"]
 
-psoe = ["psoe" or
-            "psc" or
-            "@socialistes_cat" or
-            "#FemForaRajoy" or
-            "#SomLaSolucio" or
-            "@carmechacon" or
-            "@sanchezcastejon" or
-            "@PSOE" or
-            "#OrgulloSocialista" or
-            "#VOTAPSOE" or
-            "#PedroPresidente" or
-            "#UnFuturoParaLaMayoría"]
+psoe = [u"psoe" or
+            u"psc" or
+            u"@socialistes_cat" or
+            u"#FemForaRajoy" or
+            u"#SomLaSolucio" or
+            u"@carmechacon" or
+            u"@sanchezcastejon" or
+            u"@PSOE" or
+            u"#OrgulloSocialista" or
+            u"#VOTAPSOE" or
+            u"#PedroPresidente" or
+            u"#UnFuturoParaLaMayoría"]
 
-unio = ["@unio_cat" or
-            "@DuranLleida" or
-            "#Solucions!" or
-            "@Marti_Barbera" or
-            "@Ramon_Espadaler"]
+unio = [u"@unio_cat" or
+            u"@DuranLleida" or
+            u"#Solucions!" or
+            u"@Marti_Barbera" or
+            u"@Ramon_Espadaler"]
 
-upyd = ["@UPYD" or
-            "#VotaUPYD" or
-            "#MásEspaña" or
-            "@Herzogoff" or
-            "@sryuriaguilar"]
+upyd = [u"@UPYD" or
+            u"#VotaUPYD" or
+            u"#MásEspaña" or
+            u"@Herzogoff" or
+            u"@sryuriaguilar"]
 
 keywords = ciudadanos + democracia_llibertat + ehbildu + erc + podemos + pp + psoe + unio + upyd
 
