@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f29b00ca-8bb5-46fb-b399-e32f8540225d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silver_eye_twitter_streaming_political.py" afterPath="$PROJECT_DIR$/silver_eye_twitter_streaming_political.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silver_eye_twitter_streaming.py" afterPath="$PROJECT_DIR$/silver_eye_twitter_streaming.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SilverEye.iws" />
@@ -27,8 +27,8 @@
       <file leaf-file-name="silver_eye_twitter_streaming.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/silver_eye_twitter_streaming.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.62963">
-              <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+            <state vertical-scroll-proportion="-10.185185">
+              <caret line="98" column="19" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -37,8 +37,8 @@
       <file leaf-file-name="silver_eye_twitter_streaming_political.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/silver_eye_twitter_streaming_political.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60638297">
-              <caret line="209" column="25" selection-start-line="209" selection-start-column="25" selection-end-line="209" selection-end-column="25" />
+            <state vertical-scroll-proportion="-4.6551723">
+              <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="217" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -95,8 +95,8 @@
         <option value="$PROJECT_DIR$/silver_eye_twitter_streaming_pp.py" />
         <option value="$PROJECT_DIR$/silver_eye_twitter_streaming_erc.py" />
         <option value="$PROJECT_DIR$/silver_eye_twitter_streaming.log" />
-        <option value="$PROJECT_DIR$/silver_eye_twitter_streaming.py" />
         <option value="$PROJECT_DIR$/silver_eye_twitter_streaming_political.py" />
+        <option value="$PROJECT_DIR$/silver_eye_twitter_streaming.py" />
       </list>
     </option>
   </component>
@@ -368,7 +368,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970297" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28082192" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.96438354" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -691,16 +691,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/silver_eye_twitter_streaming.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.62963">
-          <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+        <state vertical-scroll-proportion="-10.185185">
+          <caret line="98" column="19" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/silver_eye_twitter_streaming_political.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60638297">
-          <caret line="209" column="25" selection-start-line="209" selection-start-column="25" selection-end-line="209" selection-end-column="25" />
+        <state vertical-scroll-proportion="-4.6551723">
+          <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="217" selection-end-column="19" />
           <folding />
         </state>
       </provider>
