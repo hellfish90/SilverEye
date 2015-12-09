@@ -19,7 +19,7 @@ import logging
 import datetime
 
 logging.basicConfig(
-    filename='silver_eye_twitter_streaming.log',
+    filename='political.log',
     level=logging.WARNING,
     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
     datefmt='%d-%m-%y %H:%M')
@@ -209,12 +209,10 @@ class CustomStreamListener(tweepy.StreamListener):
     def on_error(self, status):
         if status == "402":
             logging.error('RATE LIMITED')
-            logging.error(self.TAG)
             logging.error(datetime.datetime.now())
             logging.error("------------------")
         else:
             logging.error(status)
-            logging.error(self.TAG)
             logging.error(datetime.datetime.now())
             logging.error("------------------")
         return True
