@@ -1,4 +1,5 @@
 # coding=utf-8
+# -*- coding: utf-8 -*-
 # This Python file uses the following encoding: utf-8
 # !/usr/bin/python
 __author__ = 'Marc Sole Farre'
