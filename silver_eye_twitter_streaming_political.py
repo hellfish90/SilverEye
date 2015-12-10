@@ -38,8 +38,7 @@ ciudadanos = [u"@GirautaOficial" or
             u"#RutaCiudadana" or
             u"#ConIlusion" or
             u"@sdelcampocs" or
-            #
-            u"#Ilusion" or
+            u"#Ilusión" or
             u"#Ciudadanos" or
             u"@InesArrimadas" or
             u"#AlbertPresidente"]
@@ -61,8 +60,7 @@ ehbildu = [u"@ehbildu" or
             u"@ehbildu_legebil"]
 
 erc = [u"ERC" or
-            #
-            u"#SomRepublica" or
+            u"#SomRepública" or
             u"@Esquerra_ERC" or
             u"@GabrielRufian" or
             u"@Esquerra_ERC" or
@@ -83,8 +81,7 @@ pp = [u"partidopopular" or
             u"partido popular"or
             u"pp"or
             u"#PP"or
-            #
-            u"#EspanaEnSerio"or
+            u"#EspañaEnSerio"or
             u"@marianorajoy"or
             u"@AlfonsoAlonsoPP"or
             u"@PPopular"or
@@ -107,8 +104,7 @@ psoe = [u"psoe" or
             u"#OrgulloSocialista" or
             u"#VOTAPSOE" or
             u"#PedroPresidente" or
-            #
-            u"#UnFuturoParaLaMayoria" ]
+            u"#UnFuturoParaLaMayoría"]
 
 unio = [u"@unio_cat" or
             u"@DuranLleida" or
@@ -118,8 +114,7 @@ unio = [u"@unio_cat" or
 
 upyd = [u"@UPYD" or
             u"#VotaUPYD" or
-            #
-            u"#MasEspana" or
+            u"#MásEspaña" or
             u"@Herzogoff" or
             u"@sryuriaguilar"]
 
