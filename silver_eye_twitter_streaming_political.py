@@ -38,7 +38,8 @@ ciudadanos = [u"@GirautaOficial" or
             u"#RutaCiudadana" or
             u"#ConIlusion" or
             u"@sdelcampocs" or
-            u"#Ilusión" or
+            #u"#Ilusión" or
+            u"#Ilusion" or
             u"#Ciudadanos" or
             u"@InesArrimadas" or
             u"#AlbertPresidente"]
@@ -60,7 +61,8 @@ ehbildu = [u"@ehbildu" or
             u"@ehbildu_legebil"]
 
 erc = [u"ERC" or
-            u"#SomRepública" or
+            #u"#SomRepública" or
+            u"#SomRepublica" or
             u"@Esquerra_ERC" or
             u"@GabrielRufian" or
             u"@Esquerra_ERC" or
