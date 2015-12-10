@@ -116,7 +116,8 @@ unio = [u"@unio_cat" or
 
 upyd = [u"@UPYD" or
             u"#VotaUPYD" or
-            u"#MásEspaña" or
+            #u"#MásEspaña" or
+            u"#MasEspaña" or
             u"@Herzogoff" or
             u"@sryuriaguilar"]
 
