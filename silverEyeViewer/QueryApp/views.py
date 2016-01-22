@@ -4,9 +4,35 @@
 
 from django.shortcuts import render
 
+from .forms import AnalysisForm
+
+
 # Create your views here.
 
 from pymongo import MongoClient
+import opener
+
+
+def text_analysis(request):
+
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = AnalysisForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            results = opener.analyze_text(form.data['data'])
+            print results
+
+            return render(request, 'sentimentQuery.html', {'form': form, 'results': results, 'text': form.data['data']})
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = AnalysisForm()
+
+    return render(request, 'sentimentQuery.html', {'form': form})
 
 
 def list_twitter_users(request, limitnumber=0, maxnumber=150):

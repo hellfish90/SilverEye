@@ -2,12 +2,12 @@
 import requests
 import sys
 
-#URL_LANGUAGE_IDENTIFIER = "http://opener.olery.com/language-identifier"
-URL_LANGUAGE_IDENTIFIER = "http://192.168.101.127:1111"
+URL_LANGUAGE_IDENTIFIER = "http://opener.olery.com/language-identifier"
+#URL_LANGUAGE_IDENTIFIER = "http://192.168.101.127:1111"
 
 
-#URL_TOKENIZER = "http://opener.olery.com/tokenizer"
-URL_TOKENIZER = "http://192.168.101.127:2222"
+URL_TOKENIZER = "http://opener.olery.com/tokenizer"
+#URL_TOKENIZER = "http://192.168.101.127:2222"
 
 URL_POSTAGGER = "http://opener.olery.com/pos-tagger"
 #URL_POSTAGGER = "192.168.101.127:3333"
@@ -84,11 +84,55 @@ def complementByInputKAFTrue(text):
 
 
 
-def get_polarity(data):
+def print_polarity(data):
     print "Positive:" + str(data.count('positive'))
     print "Negative:" + str(data.count('negative'))
     print "Neutral:" + str(data.count('neutral'))
     print "--------------------------------------"
+
+def get_polarity(data):
+    positive = "Positive:" + str(data.count('positive'))
+    negative = "Negative:" + str(data.count('negative'))
+    neutral = "Neutral:" + str(data.count('neutral'))
+    return {"positive": positive, "negative": negative, "neutral": neutral}
+
+
+
+def analyze_text(text):
+
+    output_language_identifier = call_language_identifier(URL_LANGUAGE_IDENTIFIER, complementByInputKAFTrue(text))
+    #print output_language_identifier
+
+    output_tokenizer = call_tokenizer(URL_TOKENIZER, output_language_identifier)
+    #print output_tokenizer
+
+    output_pos_tagger = call_pos_tagger(URL_POSTAGGER,output_tokenizer)
+    #print output_pos_tagger
+
+    output_constituency_parse = call_constituency_parse(URL_CONSTITUENCY_PARSE,output_pos_tagger)
+    #print output_constituency_parse
+
+
+    ''' Sentiment Analysis '''
+
+    output_polarity_tagger = call_polarity_tagger(URL_POLARITY_TAGGER,output_constituency_parse)
+    #print output_polarity_tagger
+
+    output_property_tagger = call_property_tagger(URL_PROPERTY_TAGGER,output_constituency_parse)
+    #print output_property_tagger
+
+    output_opinion_detector = call_opinion_detector(URL_OPINION_DETECTOR,output_constituency_parse)
+    #print output_opinion_detector
+
+
+    result={}
+
+
+    result["polarity"] = get_polarity(output_polarity_tagger)
+    result["property"] = get_polarity(output_property_tagger)
+    result["opinion"] = get_polarity(output_opinion_detector)
+
+    return result
 
 if __name__ == '__main__':
 
@@ -124,10 +168,10 @@ if __name__ == '__main__':
 
 
     print "output_polarity_tagger result:"
-    get_polarity(output_polarity_tagger)
+    print get_polarity(output_polarity_tagger)
 
     print "output_property_tagger result:"
-    get_polarity(output_property_tagger)
+    print get_polarity(output_property_tagger)
 
     print "output_opinion_detector result:"
-    get_polarity(output_opinion_detector)
+    print  get_polarity(output_opinion_detector)
