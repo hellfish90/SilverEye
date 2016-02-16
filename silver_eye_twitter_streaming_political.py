@@ -125,12 +125,12 @@ db = None
 
 
 class CustomStreamListener(tweepy.StreamListener):
-    def __init__(self, api):
+    def __init__(self, api, mongoClient):
         self.api = api
         super(tweepy.StreamListener, self).__init__()
         # Dev
-        client = MongoClient('192.168.101.128', 27017)
-        self.db = client.SilverEye
+        self.db = mongoClient.SilverEye
+
         self.tweets_counter = 0
         self.tweets_counter_pp = 0
         self.tweets_counter_ciudadanos = 0
@@ -200,7 +200,7 @@ class CustomStreamListener(tweepy.StreamListener):
             logging.error("On save to db:")
             logging.error(datetime.datetime.now())
             logging.error(e.__class__)
-            logging.error(e)
+            logging.error(e.message)
             logging.error("------------------")
             return True
 
@@ -240,10 +240,12 @@ if __name__ == '__main__':
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
 
+    mongoClient = MongoClient('192.168.101.128', 1234)
+
     while True:
         try:
             logging.debug('Connecting to Twitter stream ...')
-            stream = tweepy.streaming.Stream(auth, CustomStreamListener(api))
+            stream = tweepy.streaming.Stream(auth, CustomStreamListener(api,mongoClient))
             stream.filter(track=keywords)
 
         except Exception as e:
@@ -254,6 +256,7 @@ if __name__ == '__main__':
             continue
         except KeyboardInterrupt:
             stream.disconnect()
+            mongoClient.close()
             break
 
 '''

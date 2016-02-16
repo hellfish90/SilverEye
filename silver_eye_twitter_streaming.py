@@ -17,7 +17,8 @@ import pymongo
 from pymongo import MongoClient
 import json
 import logging
-import datetime
+import json
+import logging
 
 logging.basicConfig(
     filename='silver_eye_twitter_streaming.log',

@@ -1,0 +1,10 @@
+install polarity-tagger
+
+    git clone https://github.com/opener-project/polarity-tagger.git
+    cd polarity-tagger/
+    yum install rubygems
+    yum groupinstall 'Development Tools'
+    yum install ruby-devel
+    gem install opener-polarity-tagger
+
+    
