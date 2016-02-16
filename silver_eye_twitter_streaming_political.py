@@ -129,7 +129,7 @@ class CustomStreamListener(tweepy.StreamListener):
         self.api = api
         super(tweepy.StreamListener, self).__init__()
         # Dev
-        client = MongoClient('192.168.101.73', 27017)
+        client = MongoClient('192.168.101.128', 27017)
         self.db = client.SilverEye
         self.tweets_counter = 0
         self.tweets_counter_pp = 0
