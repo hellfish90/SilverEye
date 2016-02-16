@@ -38,7 +38,7 @@ def text_analysis(request):
 def list_twitter_users(request, limitnumber=0, maxnumber=150):
 
     #Dev
-    client = MongoClient('192.168.101.73', 27017)
+    client = MongoClient('192.168.101.128', 27017)
 
     #Prod
     #client = MongoClient('127.0.0.1', 27017)
@@ -48,7 +48,6 @@ def list_twitter_users(request, limitnumber=0, maxnumber=150):
 
     data = client.SilverEye.twitterUser.find()[limitnumber:maxnumber]
 
-    #print data[0]['name']
 
     return render(request, 'listUsersTwitter.html', {'users': data})
 
@@ -56,7 +55,7 @@ def list_twitter_users(request, limitnumber=0, maxnumber=150):
 def list_twitter_status(request, limitnumber=0, maxnumber=150):
 
     #Dev
-    client = MongoClient('192.168.101.73', 27017)
+    client = MongoClient('192.168.101.128', 27017)
 
     #Prod
     #client = MongoClient('127.0.0.1', 27017)
@@ -64,8 +63,56 @@ def list_twitter_status(request, limitnumber=0, maxnumber=150):
     limitnumber = int(limitnumber)
     maxnumber = int(maxnumber)
 
-    data = client.SilverEye.twitterStatus.find()[limitnumber:maxnumber]
+    data = client.SilverEye.twitterPolitical.find()[limitnumber:maxnumber]
 
-    print data[0]['text']
+    dataSend = []
 
-    return render(request, 'listStatusTwitter.html', {'status': data})
+    for tweet in data:
+        print tweet['text']
+        print tweet['place']
+
+        text = tweet['text'].encode('utf8')
+
+        sentiment = opener.analyze_text(text)
+        #print sentiment
+        color = get_color_by_sentiment(sentiment)
+        entities = get_entities(text)
+        relevantTweet = {'tweet':tweet['text'], 'sentiment':sentiment, 'place':tweet['place'], 'color':color, 'entities': entities}
+
+        dataSend.append(relevantTweet)
+
+    return render(request, 'listStatusTwitter.html', {'status': dataSend})
+
+
+def get_color_by_sentiment(sentiment):
+
+    negative = int(sentiment['opinion']['negative'])
+    negative = negative + int(sentiment['polarity']['negative'])
+
+    positive = int(sentiment['opinion']['positive'])
+    positive = positive + int(sentiment['polarity']['positive'])
+
+    if negative == positive:
+        return 0
+    elif negative > positive:
+        return 1
+    elif negative < positive:
+        return 2
+
+
+def get_entities(text):
+    splited_text = text.split(' ')
+
+    users = []
+
+    if splited_text[0] == "RT":
+        del splited_text[0]
+        del splited_text[1]
+
+    for word in splited_text:
+        if len(word) > 0 and word[0] == "@":
+            users.append(word)
+        if len(word) > 0 and word[0] == "#":
+            users.append(word)
+
+    return users

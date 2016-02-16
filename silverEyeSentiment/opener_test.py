@@ -1,6 +1,3 @@
-# !/usr/bin/python
-
-# -*- coding: utf-8 -*-
 
 import requests
 
@@ -48,7 +45,7 @@ f_NED = open('QueryApp/Data/NED.kaf', 'w')
 
 f_COREFERENCE = open('QueryApp/Data/COREFERENCE.kaf', 'w')
 
-f_CONSTITUENT_PARSER = open('QueryApp/Data/CONSTITUENT_PARSER.kaf', 'w')
+#f_CONSTITUENT_PARSER = open('QueryApp/Data/CONSTITUENT_PARSER.kaf', 'w')
 
 
 def call_language_identifier(URL, data):
@@ -211,14 +208,22 @@ if __name__ == '__main__':
     ''' Sentiment Analysis '''
 
     output_polarity_tagger = call_polarity_tagger(URL_POLARITY_TAGGER,output_constituency_parse)
-    #print output_polarity_tagger
+    print output_polarity_tagger
 
     output_property_tagger = call_property_tagger(URL_PROPERTY_TAGGER,output_constituency_parse)
-    #print output_property_tagger
+    print output_property_tagger
 
     output_opinion_detector = call_opinion_detector(URL_OPINION_DETECTOR,output_constituency_parse)
-    #print output_opinion_detector
+    print output_opinion_detector
 
+    print "Polarity tagger:"
+    print get_polarity(output_polarity_tagger)
+
+    print "Property tagger:"
+    print get_polarity(output_property_tagger)
+
+    print "Opinion tagger:"
+    print get_polarity(output_opinion_detector)
 
     ''' Named Entity Recognition and Named Entity Disambiguation '''
 
@@ -231,21 +236,17 @@ if __name__ == '__main__':
     print output_ned
     f_NED.write(output_ned)
 
+
     output_coreference = call_coreference(URL_COREFERENCE,output_ned)
     print output_coreference
     f_COREFERENCE.write(output_coreference)
 
-    output_constituent_parser = call_constituent_parser(URL_CONSTITUENT_PARSER,output_coreference)
-    print output_constituent_parser
-    f_CONSTITUENT_PARSER.write(output_constituent_parser)
-
     f_NER.close()
     f_NED.close()
     f_COREFERENCE.close()
-    f_CONSTITUENT_PARSER.close()
 
 
-'''
+
     print "output_polarity_tagger result:"
     print get_polarity(output_polarity_tagger)
 
@@ -254,4 +255,3 @@ if __name__ == '__main__':
 
     print "output_opinion_detector result:"
     print  get_polarity(output_opinion_detector)
-'''

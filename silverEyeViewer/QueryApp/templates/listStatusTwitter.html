@@ -1,9 +1,20 @@
     {% for tweet in status %}
-    <ul class="collection with-header">
-        <li class="collection-header deep-orange accent-1"><h5>{{tweet.text}}</h5></li>
-        <li class="collection-header deep-orange accent-1"><h5>{{tweet.place.country}}</h5></li>
-        <li class="collection-header deep-orange accent-1"><h5>{{tweet.place.full_name}}</h5></li>
-        <li class="collection-header deep-orange accent-1"><h5>{{tweet.created_at}}</h5></li>
-        <li class="collection-header deep-orange accent-1"><h5>________________________</h5></li>
-    </ul>
+
+        {% if tweet.color == 0  %}
+        <ul class="collection with-header" style="background: #669999;">
+        {% endif %}
+
+        {% if tweet.color == 1  %}
+        <ul class="collection with-header" style="background: #ff5050;">
+        {% endif %}
+
+        {% if tweet.color == 2  %}
+        <ul class="collection with-header" style="background: #66ff66;">
+        {% endif %}
+
+            <li class="collection-header deep-orange accent-1"><h5>{{tweet.tweet}}</h5></li>
+            <li class="collection-header deep-orange accent-1"><h9>{{tweet.sentiment.opinion}}</h9></li>
+            <li class="collection-header deep-orange accent-1"><h9>{{tweet.sentiment.polarity}}</h9></li>
+            <li class="collection-header deep-orange accent-1"><h9>Entities: {{tweet.entities}}</h9></li>
+        </ul>
     {% endfor %}
