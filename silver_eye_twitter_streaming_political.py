@@ -240,7 +240,7 @@ if __name__ == '__main__':
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
 
-    mongoClient = MongoClient('192.168.101.128', 1234)
+    mongoClient = MongoClient('127.0.0.1', 1234)
 
     while True:
         try:
