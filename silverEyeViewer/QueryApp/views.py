@@ -83,6 +83,38 @@ def list_twitter_status(request, limitnumber=0, maxnumber=150):
 
     return render(request, 'listStatusTwitter.html', {'status': dataSend})
 
+def list_twitter_users_analized(request, limitnumber=0, maxnumber=150):
+
+    #Dev
+    client = MongoClient('0.0.0.0', 1234)
+
+    db_destiny_user = client.SilverEye['TestSentimentUser']
+
+
+    limitnumber = int(limitnumber)
+    maxnumber = int(maxnumber)
+
+    data = db_destiny_user.find()[limitnumber:maxnumber]
+
+
+    return render(request, 'listUsersAnalized.html', {'users': data})
+
+
+
+
+def user_analized(request, id=0):
+
+    client = MongoClient('0.0.0.0', 1234)
+
+    db_data = client.SilverEye.TestSentiment
+    db_user = client.SilverEye.TestSentimentUser
+
+    user = db_user.find_one({"user": int(id)})
+    data = db_data.find({"user": int(id)})
+
+    return render(request, 'userAnalized.html', {'user': user, 'data_set':data})
+
+########
 
 def get_color_by_sentiment(sentiment):
 
@@ -116,3 +148,6 @@ def get_entities(text):
             users.append(word)
 
     return users
+
+
+

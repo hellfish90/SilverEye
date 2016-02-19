@@ -1,0 +1,27 @@
+
+    <h1>{{user.user}}</h1>
+    <h4>Result</h4>
+
+    {% for key, values in user.result.items %}
+        <ul class="collection with-header">
+            <li style="background-color:#99ffcc" class="collection-header deep-orange accent-1"><h5>{{key}} = {{values}}</h5></li>
+        </ul>
+    {% endfor %}
+
+
+    {% for data in data_set %}
+        <ul class="collection with-header">
+            <li style="background-color:#99ccff" class="collection-header deep-orange accent-1">
+                <h5>ID:{{data.text}}</h5>
+                <h4>Polarity: {{data.polarity}}</h4>
+                <h4>Coordinates: {{data.coordinates}}</h4>
+                <h3>Entities:</h3>
+                {% for entity in data.entities %}
+                    <ul class="collection with-header">
+                        <li class="collection-header deep-orange accent-1"><h8>{{entity}}</h8></li>
+                    </ul>
+                {% endfor %}
+            </li>
+            <h1>____________________</h1>
+        </ul>
+    {% endfor %}
