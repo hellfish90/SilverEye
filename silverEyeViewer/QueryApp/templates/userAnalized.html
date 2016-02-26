@@ -2,6 +2,23 @@
 {%block content %}
     <h3>{{user.user}}</h3>
     <h6>Result</h6>
+
+    <ul class="collection with-header">
+    {% for key, values in user.result_political.items %}
+
+        {% if values > 0 %}
+            <li  class="card-panel teal lighten-2"><h8>{{key}} = {{values}}</h8></li>
+        {% endif %}
+        {% if values < 0   %}
+            <li class="card-panel red lighten-1"><h8>{{key}} = {{values}}</h8></li>
+        {% endif %}
+        {% if values == 0  %}
+            <li class="card-panel purple lighten-1"><h8>{{key}} = {{values}}</h8></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+
     <ul class="collection with-header">
     {% for key, values in user.result.items %}
 
