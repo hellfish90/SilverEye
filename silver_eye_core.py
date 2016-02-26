@@ -10,7 +10,7 @@ import time
 
 
 def identify_sentiment_by_text_entities_and_user():
-    client = MongoClient('0.0.0.0', 1234)
+    client = MongoClient('0.0.0.0', 27017)
 
     db_origin = client.SilverEye['twitterPolitical']
     db_destiny_data = client.SilverEye['TestSentiment']
@@ -118,7 +118,7 @@ def get_result_of_set_of_data(data_set):
 
 
 def analyze_user(user_id):
-    client = MongoClient('0.0.0.0', 1234)
+    client = MongoClient('0.0.0.0', 27017)
 
     db_data = client.SilverEye['TestSentiment']
     db_user = client.SilverEye['TestSentimentUser']
@@ -131,7 +131,7 @@ def analyze_user(user_id):
 
 
 def analyze_all_users():
-    client = MongoClient('0.0.0.0', 1234)
+    client = MongoClient('0.0.0.0', 27017)
     db_user = client.SilverEye['TestSentimentUser']
 
     for user in db_user.find():

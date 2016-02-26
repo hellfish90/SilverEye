@@ -86,7 +86,7 @@ def list_twitter_status(request, limitnumber=0, maxnumber=150):
 def list_twitter_users_analized(request, limitnumber=0, maxnumber=150):
 
     #Dev
-    client = MongoClient('0.0.0.0', 1234)
+    client = MongoClient('0.0.0.0', 27017)
 
     db_destiny_user = client.SilverEye['TestSentimentUser']
 
@@ -104,7 +104,7 @@ def list_twitter_users_analized(request, limitnumber=0, maxnumber=150):
 
 def user_analized(request, id=0):
 
-    client = MongoClient('0.0.0.0', 1234)
+    client = MongoClient('0.0.0.0', 27017)
 
     db_data = client.SilverEye.TestSentiment
     db_user = client.SilverEye.TestSentimentUser
