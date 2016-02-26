@@ -1,27 +1,39 @@
-
-    <h1>{{user.user}}</h1>
-    <h4>Result</h4>
-
+{% extends "BaseSite.html" %}
+{%block content %}
+    <h3>{{user.user}}</h3>
+    <h6>Result</h6>
+    <ul class="collection with-header">
     {% for key, values in user.result.items %}
-        <ul class="collection with-header">
-            <li style="background-color:#99ffcc" class="collection-header deep-orange accent-1"><h5>{{key}} = {{values}}</h5></li>
-        </ul>
+
+        {% if values > 0 %}
+            <li  class="card-panel teal lighten-2"><h8>{{key}} = {{values}}</h8></li>
+        {% endif %}
+        {% if values < 0   %}
+            <li class="card-panel red lighten-1"><h8>{{key}} = {{values}}</h8></li>
+        {% endif %}
+        {% if values == 0  %}
+            <li class="card-panel purple lighten-1"><h8>{{key}} = {{values}}</h8></li>
+        {% endif %}
     {% endfor %}
+    </ul>
 
-
+    <ul class="collection with-header">
     {% for data in data_set %}
-        <ul class="collection with-header">
-            <li style="background-color:#99ccff" class="collection-header deep-orange accent-1">
-                <h5>ID:{{data.text}}</h5>
-                <h4>Polarity: {{data.polarity}}</h4>
-                <h4>Coordinates: {{data.coordinates}}</h4>
-                <h3>Entities:</h3>
+
+            <li style="background-color:#99ccff" >
+                <h6>ID:{{data.text}}</h6>
+                <h6>Polarity: {{data.polarity}}</h6>
+                <h6>Coordinates: {{data.coordinates}}</h6>
+                <h6>Political: {{data.political}}</h6>
+                <h5>Entities:</h5>
                 {% for entity in data.entities %}
-                    <ul class="collection with-header">
-                        <li class="collection-header deep-orange accent-1"><h8>{{entity}}</h8></li>
+                    <ul >
+                        <li ><h8>{{entity}}</h8></li>
                     </ul>
                 {% endfor %}
             </li>
             <h1>____________________</h1>
-        </ul>
+
     {% endfor %}
+    </ul>
+{% endblock %}
