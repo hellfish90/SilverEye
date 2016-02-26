@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f29b00ca-8bb5-46fb-b399-e32f8540225d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silver_eye_core.py" afterPath="$PROJECT_DIR$/silver_eye_core.py" />
     </list>
     <ignored path="SilverEye.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,21 +27,23 @@
       <file leaf-file-name="silver_eye_core.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/silver_eye_core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2556818">
-              <caret line="12" column="40" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="40" />
+            <state vertical-scroll-proportion="2.2304528">
+              <caret line="323" column="4" selection-start-line="323" selection-start-column="4" selection-end-line="323" selection-end-column="4" />
               <folding>
-                <element signature="e#45#58#0" expanded="true" />
+                <element signature="e#25#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/views.py">
+      <file leaf-file-name="silver_eye_twitter_streaming_political.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/silver_eye_twitter_streaming_political.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="112" column="42" selection-start-line="112" selection-start-column="42" selection-end-line="112" selection-end-column="42" />
-              <folding />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
+              <folding>
+                <element signature="e#241#254#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,10 +110,10 @@
         <option value="$PROJECT_DIR$/opener.py" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/urls.py" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/listUsersAnalized.html" />
-        <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/views.py" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/BaseSite.html" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/userAnalized.html" />
         <option value="$PROJECT_DIR$/config.json" />
+        <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/views.py" />
         <option value="$PROJECT_DIR$/silver_eye_core.py" />
       </list>
     </option>
@@ -425,7 +428,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2573471" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -433,7 +436,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329235" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329235" sideWeight="0.49722" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34153005" sideWeight="0.48451152" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.59289616" sideWeight="0.48451152" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -830,13 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/silver_eye_twitter_streaming_political.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="195" column="70" selection-start-line="195" selection-start-column="56" selection-end-line="195" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15441176">
@@ -846,18 +842,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="112" column="42" selection-start-line="112" selection-start-column="42" selection-end-line="112" selection-end-column="42" />
+        <state vertical-scroll-proportion="1.6392045">
+          <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/silver_eye_twitter_streaming_political.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
+          <folding>
+            <element signature="e#241#254#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/silver_eye_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2556818">
-          <caret line="12" column="40" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="40" />
+        <state vertical-scroll-proportion="2.2304528">
+          <caret line="323" column="4" selection-start-line="323" selection-start-column="4" selection-end-line="323" selection-end-column="4" />
           <folding>
-            <element signature="e#45#58#0" expanded="true" />
+            <element signature="e#25#38#0" expanded="true" />
           </folding>
         </state>
       </provider>

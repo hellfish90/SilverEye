@@ -1,5 +1,3 @@
-# !/usr/bin/python
-
 # -*- coding: utf-8 -*-
 
 import opener
@@ -7,7 +5,92 @@ import opener
 from pymongo import MongoClient
 import time
 
+ciudadanos = [u"@GirautaOficial" ,
+            u"#AlbertRivera" ,
+            u"@Albert_Rivera" ,
+            u"@CiudadanosCs" ,
+            u"#RutaCiudadana" ,
+            u"#ConIlusion" ,
+            u"@sdelcampocs" ,
+            u"#Ilusión" ,
+            u"#Ciudadanos" ,
+            u"@InesArrimadas" ,
+            u"#AlbertPresidente"]
 
+democracia_llibertat = [u"@ConvergenciaCAT" ,
+            u"@DemocratesCAT" ,
+            u"@reagrupament" ,
+            u"#possible" ,
+            u"@20dl_cat" ,
+            u"@joseprull" ,
+            u"@joanbague" ,
+            u"@peresalo68" ,
+            u"@Ferran_Bel" ,
+            u"@franceschoms"]
+
+ehbildu = [u"@ehbildu" ,
+            u"#BilduErabakira" ,
+            u"#BilduErabakira" ,
+            u"@ehbildu_legebil"]
+
+erc = [u"ERC" ,
+            u"#SomRepública" ,
+            u"@Esquerra_ERC" ,
+            u"@GabrielRufian" ,
+            u"@Esquerra_ERC" ,
+            u"@JoanTarda" ,
+            u"@junqueras" ,
+            u"@MartaRovira"]
+
+podemos = [u"#UNPAISCONTIGO" ,
+            u"@ahorapodemos" ,
+            u"#Un6Dcontigo" ,
+            u"#6DHagamosHistoria" ,
+            u"@Pablo_Iglesias_" ,
+            u"@AdaColau" ,
+            u"@VickyRosell" ,
+            u"#LeyDeImpunidad"]
+
+pp = [u"partidopopular" ,
+            u"partido popular",
+            u"pp",
+            u"#PP",
+            u"#EspañaEnSerio",
+            u"@marianorajoy",
+            u"@AlfonsoAlonsoPP",
+            u"@PPopular",
+            u"#VotaPP",
+            u"@Sorayapp",
+            u"@mdcospedal",
+            u"pablocasado_",
+            u"#YoVotoPP",
+            u"#EmpleoEnSerio",
+            u"@NNGG_Es"]
+
+psoe = [u"psoe" ,
+            u"psc" ,
+            u"@socialistes_cat" ,
+            u"#FemForaRajoy" ,
+            u"#SomLaSolucio" ,
+            u"@carmechacon" ,
+            u"@sanchezcastejon" ,
+            u"@PSOE" ,
+            u"#OrgulloSocialista" ,
+            u"#VOTAPSOE" ,
+            u"#PedroPresidente" ,
+            u"#UnFuturoParaLaMayoría"]
+
+unio = [u"@unio_cat" ,
+            u"@DuranLleida" ,
+            u"#Solucions!" ,
+            u"@Marti_Barbera" ,
+            u"@Ramon_Espadaler"]
+
+upyd = [u"@UPYD" ,
+            u"#VotaUPYD" ,
+            u"#MásEspaña" ,
+            u"@Herzogoff" ,
+            u"@sryuriaguilar"]
 
 def identify_sentiment_by_text_entities_and_user():
     client = MongoClient('0.0.0.0', 27017)
@@ -103,7 +186,7 @@ def get_result_of_set_of_data(data_set):
 
         entities_collection.append(entities)
 
-    print entities_collection
+    #print entities_collection
 
     for entity in user_entities:
         result_entities[entity] = 0
@@ -130,6 +213,99 @@ def analyze_user(user_id):
     db_user.update({"user": user_id}, {"$set": {"result": result}}, upsert=True)
 
 
+def analyze_political_sentiment_by_entities(user_id):
+    client = MongoClient('0.0.0.0', 27017)
+
+    db_user = client.SilverEye['TestSentimentUser']
+
+    ciudadanos_tag = []
+    democracia_llibertat_tag = []
+    ehbildu_tag = []
+    erc_tag = []
+    podemos_tag = []
+    pp_tag = []
+    psoe_tag = []
+    unio_tag = []
+    upyd_tag = []
+
+    ciudadanos_total = 0
+    democracia_llibertat_total = 0
+    ehbildu_total = 0
+    erc_total = 0
+    podemos_total = 0
+    pp_total = 0
+    psoe_total = 0
+    unio_total = 0
+    upyd_total = 0
+
+
+    data = db_user.find({"user": user_id})[0]
+
+    print data
+    print data['result']
+
+
+    for key, value in data['result'].items():
+        if key in ciudadanos:
+            ciudadanos_tag.append(value)
+
+        if key in democracia_llibertat:
+            democracia_llibertat_tag.append(value)
+
+        if key in ehbildu:
+            ehbildu_tag.append(value)
+
+        if key in erc:
+            erc_tag.append(value)
+
+        if key in podemos:
+            podemos_tag.append(value)
+
+        if key in pp:
+            pp_tag.append(value)
+
+        if key in psoe:
+            psoe_tag.append(value)
+
+        if key in unio:
+            unio_tag.append(value)
+
+        if key in upyd:
+            upyd_tag.append(value)
+
+    for value in ciudadanos_tag:
+        ciudadanos_total = value +ciudadanos_total
+
+    for value in democracia_llibertat_tag:
+        democracia_llibertat_total = value + democracia_llibertat_total
+
+    for value in ehbildu_tag:
+        ehbildu_total = value + ehbildu_total
+
+    for value in erc_tag:
+        erc_total = value + erc_total
+
+    for value in podemos_tag:
+        podemos_total = value + podemos_total
+
+    for value in pp_tag:
+        pp_total = value + pp_total
+
+    for value in psoe_tag:
+        psoe_total += value
+
+    for value in unio_tag:
+        unio_total += value
+
+    for value in upyd_tag:
+        upyd_total += value
+
+    result = {"ciudadanos":ciudadanos_total,"democracia_llibertat":democracia_llibertat_total, "ehbildu":ehbildu_total, \
+              "erc":erc_total, "podemos":podemos_total, "pp":pp_total, "psoe":psoe_total, "unio":unio_total, "upyd":upyd_total }
+
+    db_user.update({"user": user_id}, {"$set": {"result_political": result}}, upsert=True)
+
+
 def analyze_all_users():
     client = MongoClient('0.0.0.0', 27017)
     db_user = client.SilverEye['TestSentimentUser']
@@ -137,12 +313,13 @@ def analyze_all_users():
     for user in db_user.find():
         print user
         analyze_user(user['user'])
+        analyze_political_sentiment_by_entities(user['user'])
 
 
 if __name__ == '__main__':
     start_time = time.time()
 
-    identify_sentiment_by_text_entities_and_user()
+    #identify_sentiment_by_text_entities_and_user()
     # analyze_user(117702124)
     analyze_all_users()
     print("--- %s seconds ---" % (time.time() - start_time))
