@@ -5,6 +5,8 @@
 import opener
 
 from pymongo import MongoClient
+import time
+
 
 
 def identify_sentiment_by_text_entities_and_user():
@@ -18,7 +20,6 @@ def identify_sentiment_by_text_entities_and_user():
 
     max_set = 5;
 
-    size = 20
 
     data_analyzed = 0;
 
@@ -139,6 +140,10 @@ def analyze_all_users():
 
 
 if __name__ == '__main__':
+    start_time = time.time()
+
     identify_sentiment_by_text_entities_and_user()
     # analyze_user(117702124)
     analyze_all_users()
+    print("--- %s seconds ---" % (time.time() - start_time))
+
