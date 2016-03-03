@@ -331,25 +331,28 @@ def global_results():
     upyd_total = 0
 
     for user in db_user.find():
-        for key, value in user['result_political'].items():
-            if key == "ciudadanos":
-                ciudadanos_total = ciudadanos_total +value
-            if key == "democracia_llibertat":
-                democracia_llibertat_total = democracia_llibertat_total +value
-            if key == "ehbildu":
-                ehbildu_total = ehbildu_total +value
-            if key == "erc":
-                erc_total = erc_total +value
-            if key == "podemos":
-                podemos_total = podemos_total +value
-            if key == "pp":
-                pp_total = pp_total +value
-            if key == "unio":
-                unio_total = unio_total +value
-            if key == "upyd":
-                upyd_total = upyd_total +value
-            if key == "psoe":
-                psoe_total = psoe_total +value
+
+        if user['result_political'] is not None:
+
+            for key, value in user['result_political'].items():
+                if key == "ciudadanos":
+                    ciudadanos_total = ciudadanos_total +value
+                if key == "democracia_llibertat":
+                    democracia_llibertat_total = democracia_llibertat_total +value
+                if key == "ehbildu":
+                    ehbildu_total = ehbildu_total +value
+                if key == "erc":
+                    erc_total = erc_total +value
+                if key == "podemos":
+                    podemos_total = podemos_total +value
+                if key == "pp":
+                    pp_total = pp_total +value
+                if key == "unio":
+                    unio_total = unio_total +value
+                if key == "upyd":
+                    upyd_total = upyd_total +value
+                if key == "psoe":
+                    psoe_total = psoe_total +value
 
     print ciudadanos_total
     print democracia_llibertat_total
