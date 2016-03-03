@@ -117,6 +117,18 @@ def user_analized(request, id=0):
 
     return render(request, 'userAnalized.html', {'user': user, 'data_set':data})
 
+def global_results(request):
+
+    client = MongoClient(server, port)
+
+    db_result= client.SilverEye.TestGlobalResult
+
+    global_results = db_result.find_one({"unique": "unique"})
+    print global_results
+
+    return render(request, 'globalResults.html', {'global': global_results})
+
+
 ########
 
 def get_color_by_sentiment(sentiment):

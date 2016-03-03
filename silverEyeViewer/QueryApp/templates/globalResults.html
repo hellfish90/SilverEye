@@ -1,0 +1,50 @@
+{% extends "BaseSite.html" %}
+{%block content %}
+
+<script type="text/javascript">
+
+window.onload = function () {
+	var chart = new CanvasJS.Chart("chartContainer", {
+		title:{
+			text: "Political Analysis"
+		},
+		data: [
+		{
+			// Change type to "doughnut", "line", "splineArea", etc.
+			type: "column",
+			dataPoints: [
+			    {% for key, values in global.result_political.items %}
+
+                    { label: "{{key}}",  y: {{values}} },
+
+                {% endfor %}
+
+			]
+		}
+		]
+	});
+	chart.render();
+}
+</script>
+
+    <H1>Users: {{global.users}}</H1>
+
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+
+    <ul class="collection">
+    {% for key, values in global.result_political.items %}
+
+        {% if values > 0 %}
+            <li  class="collection-item"><h8>{{key}} <span class="badge"> {{values}}</span></h8></li>
+        {% endif %}
+        {% if values < 0   %}
+            <li class="collection-item"><h8>{{key}} <span class="badge"> {{values}}</span></h8></li>
+        {% endif %}
+        {% if values == 0  %}
+            <li class="collection-item"><h8>{{key}} <span class="badge"> {{values}}</span></h8></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+{% endblock %}
