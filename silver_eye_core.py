@@ -317,7 +317,8 @@ def analyze_all_users():
 
 
 def global_results():
-    client = MongoClient('0.0.0.0', 27017)
+    client = MongoClient('192.168.101.85', 27017)
+    db_data = client.SilverEye['TestSentimentUser']
     db_result = client.SilverEye['TestGlobalResult']
 
     ciudadanos_total = 0
@@ -332,15 +333,13 @@ def global_results():
 
     total_users =0
 
-    for user in db_result.find():
+    for user in db_data.find():
 
         if user.get('result_political', None) is not None:
 
-            total_users = total_users +1
+            total_users = total_users + 1
 
             for key, value in user['result_political'].items():
-
-
 
                 if key == "ciudadanos":
                     ciudadanos_total = ciudadanos_total +value
