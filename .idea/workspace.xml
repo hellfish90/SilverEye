@@ -26,8 +26,8 @@
       <file leaf-file-name="silver_eye_core.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/silver_eye_core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.91477275">
-              <caret line="369" column="0" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.25426137">
+              <caret line="340" column="27" selection-start-line="340" selection-start-column="16" selection-end-line="340" selection-end-column="27" />
               <folding>
                 <element signature="e#25#38#0" expanded="true" />
               </folding>
@@ -153,8 +153,8 @@
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/urls.py" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/views.py" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/BaseSite.html" />
-        <option value="$PROJECT_DIR$/silver_eye_core.py" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/globalResults.html" />
+        <option value="$PROJECT_DIR$/silver_eye_core.py" />
       </list>
     </option>
   </component>
@@ -930,8 +930,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/silver_eye_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.91477275">
-          <caret line="369" column="0" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.25426137">
+          <caret line="340" column="27" selection-start-line="340" selection-start-column="16" selection-end-line="340" selection-end-column="27" />
           <folding>
             <element signature="e#25#38#0" expanded="true" />
           </folding>

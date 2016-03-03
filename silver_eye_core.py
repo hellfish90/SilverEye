@@ -336,9 +336,11 @@ def global_results():
 
         if user.get('result_political', None) is not None:
 
+            total_users = total_users +1
+
             for key, value in user['result_political'].items():
 
-                total_users += 1
+
 
                 if key == "ciudadanos":
                     ciudadanos_total = ciudadanos_total +value
