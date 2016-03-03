@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from requests.packages.urllib3.exceptions import ProtocolError
 
 __author__ = 'Marc Sole Farre'
 
@@ -163,7 +163,7 @@ class CustomStreamListener(tweepy.StreamListener):
 
         if self.last_time != datetime.datetime.now().hour:
             self.last_time = datetime.datetime.now().hour
-            logging.warning('Tweets: ' + str(self.tweets_counter))
+            logging.info('Tweets: ' + str(self.tweets_counter))
             self.db.twitterCounter.insert({"Political": "Streaming", "datetime": datetime.datetime.now(),
                                                 "num": self.tweets_counter})
             # print self.tweets_counter
@@ -248,12 +248,15 @@ if __name__ == '__main__':
             stream = tweepy.streaming.Stream(auth, CustomStreamListener(api,mongoClient))
             stream.filter(track=keywords)
 
+        except ProtocolError as e:
+
+            continue
         except Exception as e:
-            # Oh well, reconnect and keep trucking
             logging.error(e.__class__)
             logging.error(e)
             logging.error("------------------")
             continue
+
         except KeyboardInterrupt:
             stream.disconnect()
             mongoClient.close()

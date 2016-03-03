@@ -316,11 +316,59 @@ def analyze_all_users():
         analyze_political_sentiment_by_entities(user['user'])
 
 
+def global_results():
+    client = MongoClient('0.0.0.0', 27017)
+    db_user = client.SilverEye['TestSentimentUser']
+
+    ciudadanos_total = 0
+    democracia_llibertat_total = 0
+    ehbildu_total = 0
+    erc_total = 0
+    podemos_total = 0
+    pp_total = 0
+    psoe_total = 0
+    unio_total = 0
+    upyd_total = 0
+
+    for user in db_user.find():
+        for key, value in user['result_political'].items():
+            if key == "ciudadanos":
+                ciudadanos_total = ciudadanos_total +value
+            if key == "democracia_llibertat":
+                democracia_llibertat_total = democracia_llibertat_total +value
+            if key == "ehbildu":
+                ehbildu_total = ehbildu_total +value
+            if key == "erc":
+                erc_total = erc_total +value
+            if key == "podemos":
+                podemos_total = podemos_total +value
+            if key == "pp":
+                pp_total = pp_total +value
+            if key == "unio":
+                unio_total = unio_total +value
+            if key == "upyd":
+                upyd_total = upyd_total +value
+            if key == "psoe":
+                psoe_total = psoe_total +value
+
+    print ciudadanos_total
+    print democracia_llibertat_total
+    print ehbildu_total
+    print erc_total
+    print podemos_total
+    print pp_total
+    print psoe_total
+    print unio_total
+    print upyd_total
+
+
 if __name__ == '__main__':
     start_time = time.time()
 
     #identify_sentiment_by_text_entities_and_user()
     # analyze_user(117702124)
-    analyze_all_users()
+    # analyze_all_users()
+
+    global_results()
     print("--- %s seconds ---" % (time.time() - start_time))
 

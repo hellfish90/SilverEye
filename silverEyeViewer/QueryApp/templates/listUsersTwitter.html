@@ -1,5 +1,9 @@
+{% extends "BaseSite.html" %}
+{%block content %}
+
     {% for user in users %}
     <ul class="collection with-header">
         <li class="collection-header deep-orange accent-1"><h5>{{user.name}}</h5></li>
     </ul>
     {% endfor %}
+{% endblock %}
