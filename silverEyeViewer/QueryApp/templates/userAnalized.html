@@ -1,35 +1,50 @@
 {% extends "BaseSite.html" %}
 {%block content %}
+
+<script type="text/javascript">
+
+window.onload = function () {
+	var chart = new CanvasJS.Chart("chartContainer", {
+		title:{
+			text: "Political Analysis"
+		},
+		data: [
+		{
+			// Change type to "doughnut", "line", "splineArea", etc.
+			type: "column",
+			dataPoints: [
+			    {% for key, values in user.result_political.items %}
+
+                    { label: "{{key}}",  y: {{values}} },
+
+                {% endfor %}
+
+			]
+		}
+		]
+	});
+	chart.render();
+}
+</script>
+
+
     <h3>{{user.user}}</h3>
     <h6>Result</h6>
 
-    <ul class="collection with-header">
-    {% for key, values in user.result_political.items %}
-
-        {% if values > 0 %}
-            <li  class="card-panel teal lighten-2"><h8>{{key}} = {{values}}</h8></li>
-        {% endif %}
-        {% if values < 0   %}
-            <li class="card-panel red lighten-1"><h8>{{key}} = {{values}}</h8></li>
-        {% endif %}
-        {% if values == 0  %}
-            <li class="card-panel purple lighten-1"><h8>{{key}} = {{values}}</h8></li>
-        {% endif %}
-    {% endfor %}
-    </ul>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
 
-    <ul class="collection with-header">
+    <ul class="collection">
     {% for key, values in user.result.items %}
 
         {% if values > 0 %}
-            <li  class="card-panel teal lighten-2"><h8>{{key}} = {{values}}</h8></li>
+            <li  class="collection-item"><h8>{{key}} <span class="badge"> {{values}}</span></h8></li>
         {% endif %}
         {% if values < 0   %}
-            <li class="card-panel red lighten-1"><h8>{{key}} = {{values}}</h8></li>
+            <li class="collection-item"><h8>{{key}} <span class="badge"> {{values}}</span></h8></li>
         {% endif %}
         {% if values == 0  %}
-            <li class="card-panel purple lighten-1"><h8>{{key}} = {{values}}</h8></li>
+            <li class="collection-item"><h8>{{key}} <span class="badge"> {{values}}</span></h8></li>
         {% endif %}
     {% endfor %}
     </ul>
@@ -37,7 +52,17 @@
     <ul class="collection with-header">
     {% for data in data_set %}
 
-            <li style="background-color:#99ccff" >
+
+        {% if data.polarity > 0 %}
+            <li  class="card-panel teal lighten-2">
+        {% endif %}
+        {% if data.polarity < 0   %}
+            <li class="card-panel red lighten-1">
+        {% endif %}
+        {% if data.polarity == 0  %}
+            <li class="card-panel purple lighten-1">
+        {% endif %}
+
                 <h6>ID:{{data.text}}</h6>
                 <h6>Polarity: {{data.polarity}}</h6>
                 <h6>Coordinates: {{data.coordinates}}</h6>
