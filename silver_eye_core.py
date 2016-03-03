@@ -354,15 +354,15 @@ def global_results():
                 if key == "psoe":
                     psoe_total = psoe_total +value
 
-    print ciudadanos_total
-    print democracia_llibertat_total
-    print ehbildu_total
-    print erc_total
-    print podemos_total
-    print pp_total
-    print psoe_total
-    print unio_total
-    print upyd_total
+            print ciudadanos_total
+            print democracia_llibertat_total
+            print ehbildu_total
+            print erc_total
+            print podemos_total
+            print pp_total
+            print psoe_total
+            print unio_total
+            print upyd_total
 
 
 if __name__ == '__main__':
