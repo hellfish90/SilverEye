@@ -331,11 +331,16 @@ def global_results():
     unio_total = 0
     upyd_total = 0
 
+    total_users =0
+
     for user in db_user.find():
 
         if user.get('result_political', None) is not None:
 
             for key, value in user['result_political'].items():
+
+                total_users += 1
+
                 if key == "ciudadanos":
                     ciudadanos_total = ciudadanos_total +value
                 if key == "democracia_llibertat":
@@ -361,6 +366,8 @@ def global_results():
               "erc":erc_total, "podemos":podemos_total, "pp":pp_total, "psoe":psoe_total, "unio":unio_total, "upyd":upyd_total }
 
     db_result.update({"unique": "unique"}, {"$set": {"result_political": result}}, upsert=True)
+    db_result.update({"unique": "unique"}, {"$set": {"users" : total_users}}, upsert=True)
+
 
 if __name__ == '__main__':
     start_time = time.time()
