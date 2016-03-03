@@ -318,6 +318,7 @@ def analyze_all_users():
 
 def global_results():
     client = MongoClient('0.0.0.0', 27017)
+    db_result = client.SilverEye['TestGlobalResult']
     db_user = client.SilverEye['TestSentimentUser']
 
     ciudadanos_total = 0
@@ -354,16 +355,12 @@ def global_results():
                 if key == "psoe":
                     psoe_total = psoe_total +value
 
-            print ciudadanos_total
-            print democracia_llibertat_total
-            print ehbildu_total
-            print erc_total
-            print podemos_total
-            print pp_total
-            print psoe_total
-            print unio_total
-            print upyd_total
 
+
+    result = {"ciudadanos":ciudadanos_total,"democracia_llibertat":democracia_llibertat_total, "ehbildu":ehbildu_total, \
+              "erc":erc_total, "podemos":podemos_total, "pp":pp_total, "psoe":psoe_total, "unio":unio_total, "upyd":upyd_total }
+
+    db_result.update({"unique": "unique"}, {"$set": {"result_political": result}}, upsert=True)
 
 if __name__ == '__main__':
     start_time = time.time()
