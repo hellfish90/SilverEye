@@ -368,7 +368,7 @@ def global_results():
 if __name__ == '__main__':
     start_time = time.time()
 
-    # identify_sentiment_by_text_entities_and_user()
+    #identify_sentiment_by_text_entities_and_user()
     # analyze_user(117702124)
     # analyze_all_users()
 
