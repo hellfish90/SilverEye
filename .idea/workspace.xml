@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f29b00ca-8bb5-46fb-b399-e32f8540225d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silver_eye_core.py" afterPath="$PROJECT_DIR$/silver_eye_core.py" />
     </list>
     <ignored path="SilverEye.iws" />
     <ignored path=".idea/workspace.xml" />
