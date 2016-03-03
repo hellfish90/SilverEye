@@ -332,7 +332,7 @@ def global_results():
 
     for user in db_user.find():
 
-        if user['result_political'] is not None:
+        if user.get('result_political', None) is not None:
 
             for key, value in user['result_political'].items():
                 if key == "ciudadanos":
