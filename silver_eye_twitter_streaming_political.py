@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from requests.packages.urllib3.exceptions import ProtocolError
 
 __author__ = 'Marc Sole Farre'
 
@@ -248,9 +247,6 @@ if __name__ == '__main__':
             stream = tweepy.streaming.Stream(auth, CustomStreamListener(api,mongoClient))
             stream.filter(track=keywords)
 
-        except ProtocolError as e:
-
-            continue
         except Exception as e:
             logging.error(e.__class__)
             logging.error(e)
