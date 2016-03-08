@@ -92,8 +92,12 @@ upyd = [u"@UPYD" ,
             u"@Herzogoff" ,
             u"@sryuriaguilar"]
 
+
+server_ip = '0.0.0.0'
+server_port = 27017
+
 def identify_sentiment_by_text_entities_and_user():
-    client = MongoClient('0.0.0.0', 27017)
+    client = MongoClient(server_ip, server_port)
 
     db_origin = client.SilverEye['twitterPolitical']
     db_destiny_data = client.SilverEye['TestSentiment']
@@ -125,7 +129,7 @@ def analyze_set_of_tweets(data_set, destiny_data, destiny_user):
 
         entities = get_entities(text)
         polarity = opener.analyze_text(text)
-        polarity = get_color_by_sentiment(polarity)
+        polarity = get_aprox_polarity(polarity)
 
         destiny_data.update({'user': user, 'text': text}, {'user': user, "text": text, "coordinates": coordinates,\
                                                            'entities': entities, 'polarity': polarity,\
@@ -153,7 +157,7 @@ def get_entities(text):
     return users
 
 
-def get_color_by_sentiment(sentiment):
+def get_aprox_polarity(sentiment):
     negative = int(sentiment['opinion']['negative'])
     negative = negative + int(sentiment['polarity']['negative'])
 
@@ -168,7 +172,7 @@ def get_color_by_sentiment(sentiment):
         return 1
 
 
-def get_result_of_set_of_data(data_set):
+def get_result_of_a_data_set_of_some_user(data_set):
     entities_collection = []
 
     user_entities = []
@@ -200,21 +204,21 @@ def get_result_of_set_of_data(data_set):
     return result_entities
 
 
-def analyze_user(user_id):
-    client = MongoClient('0.0.0.0', 27017)
+def analyze_and_save_result_of_user(user_id):
+    client = MongoClient(server_ip, server_port)
 
     db_data = client.SilverEye['TestSentiment']
     db_user = client.SilverEye['TestSentimentUser']
 
     data = db_data.find({"user": user_id})
 
-    result = get_result_of_set_of_data(data)
+    result = get_result_of_a_data_set_of_some_user(data)
 
     db_user.update({"user": user_id}, {"$set": {"result": result}}, upsert=True)
 
 
-def analyze_political_sentiment_by_entities(user_id):
-    client = MongoClient('0.0.0.0', 27017)
+def analyze_political_sentiment_by_entities_for_one_user(user_id):
+    client = MongoClient(server_ip, server_port)
 
     db_user = client.SilverEye['TestSentimentUser']
 
@@ -307,17 +311,18 @@ def analyze_political_sentiment_by_entities(user_id):
 
 
 def analyze_all_users():
-    client = MongoClient('0.0.0.0', 27017)
+    client = MongoClient(server_ip, server_port)
     db_user = client.SilverEye['TestSentimentUser']
 
     for user in db_user.find():
-        print user
-        analyze_user(user['user'])
-        analyze_political_sentiment_by_entities(user['user'])
+        #print user
+        if "result" not in user.keys():
+            analyze_and_save_result_of_user(user['user'])
+            analyze_political_sentiment_by_entities_for_one_user(user['user'])
 
 
 def global_results():
-    client = MongoClient('192.168.101.85', 27017)
+    client = MongoClient(server_ip, server_port)
     db_data = client.SilverEye['TestSentimentUser']
     db_result = client.SilverEye['TestGlobalResult']
 
@@ -331,6 +336,16 @@ def global_results():
     unio_total = 0
     upyd_total = 0
 
+    ciudadanos_total_counter = 0
+    democracia_llibertat_total_counter = 0
+    ehbildu_total_counter = 0
+    erc_total_counter = 0
+    podemos_total_counter = 0
+    pp_total_counter = 0
+    psoe_total_counter = 0
+    unio_total_counter = 0
+    upyd_total_counter = 0
+
     total_users =0
 
     for user in db_data.find():
@@ -342,31 +357,46 @@ def global_results():
             for key, value in user['result_political'].items():
 
                 if key == "ciudadanos":
-                    ciudadanos_total = ciudadanos_total +value
+                    ciudadanos_total = ciudadanos_total + value
+                    ciudadanos_total_counter += 1
                 if key == "democracia_llibertat":
-                    democracia_llibertat_total = democracia_llibertat_total +value
+                    democracia_llibertat_total = democracia_llibertat_total + value
+                    democracia_llibertat_total_counter += 1
                 if key == "ehbildu":
-                    ehbildu_total = ehbildu_total +value
+                    ehbildu_total = ehbildu_total + value
+                    democracia_llibertat_total_counter += 1
                 if key == "erc":
-                    erc_total = erc_total +value
+                    erc_total = erc_total + value
+                    democracia_llibertat_total_counter += 1
                 if key == "podemos":
-                    podemos_total = podemos_total +value
+                    podemos_total = podemos_total + value
+                    democracia_llibertat_total_counter += 1
                 if key == "pp":
-                    pp_total = pp_total +value
+                    pp_total = pp_total + value
+                    democracia_llibertat_total_counter += 1
                 if key == "unio":
-                    unio_total = unio_total +value
+                    unio_total = unio_total + value
+                    democracia_llibertat_total_counter += 1
                 if key == "upyd":
-                    upyd_total = upyd_total +value
+                    upyd_total = upyd_total + value
+                    democracia_llibertat_total_counter += 1
                 if key == "psoe":
-                    psoe_total = psoe_total +value
+                    psoe_total = psoe_total + value
+                    democracia_llibertat_total_counter += 1
 
 
 
     result = {"ciudadanos":ciudadanos_total,"democracia_llibertat":democracia_llibertat_total, "ehbildu":ehbildu_total, \
               "erc":erc_total, "podemos":podemos_total, "pp":pp_total, "psoe":psoe_total, "unio":unio_total, "upyd":upyd_total }
 
+    result_counter = {"ciudadanos":ciudadanos_total_counter,"democracia_llibertat":democracia_llibertat_total_counter, \
+                      "ehbildu":ehbildu_total_counter,"erc":erc_total_counter, "podemos":podemos_total_counter, \
+                      "pp":pp_total_counter, "psoe":psoe_total_counter, "unio":unio_total_counter, "upyd":upyd_total_counter }
+
+
     db_result.update({"unique": "unique"}, {"$set": {"result_political": result}}, upsert=True)
     db_result.update({"unique": "unique"}, {"$set": {"users" : total_users}}, upsert=True)
+    db_result.update({"unique": "unique"}, {"$set": {"political_entities_counter": result_counter}}, upsert=True)
 
 
 if __name__ == '__main__':
@@ -374,8 +404,9 @@ if __name__ == '__main__':
 
     #identify_sentiment_by_text_entities_and_user()
     # analyze_user(117702124)
-    # analyze_all_users()
+    analyze_all_users()
+    print("-Analyze Users-- %s seconds ---" % (time.time() - start_time))
 
     global_results()
-    print("--- %s seconds ---" % (time.time() - start_time))
+    print("-TOTAL-- %s seconds ---" % (time.time() - start_time))
 

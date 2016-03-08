@@ -3,28 +3,31 @@
 # -*- coding: utf-8 -*-
 
 import requests
+import time
 
-URL_LANGUAGE_IDENTIFIER = "http://opener.olery.com/language-identifier"
-#URL_LANGUAGE_IDENTIFIER = "http://192.168.101.127:1111"
+server_ip = "http://192.168.101.127"
+
+#URL_LANGUAGE_IDENTIFIER = "http://opener.olery.com/language-identifier"
+URL_LANGUAGE_IDENTIFIER = server_ip + ":1111"
 
 
-URL_TOKENIZER = "http://opener.olery.com/tokenizer"
-#URL_TOKENIZER = "http://192.168.101.127:2222"
+#URL_TOKENIZER = "http://opener.olery.com/tokenizer"
+URL_TOKENIZER = server_ip + ":2222"
 
-URL_POSTAGGER = "http://opener.olery.com/pos-tagger"
-#URL_POSTAGGER = "http://192.168.101.127:3333"
+#URL_POSTAGGER = "http://opener.olery.com/pos-tagger"
+URL_POSTAGGER = server_ip + ":3333"
 
-URL_CONSTITUENCY_PARSE = "http://opener.olery.com/constituent-parser"
-#URL_CONSTITUENCY_PARSE = "http://192.168.101.127:4444"
+#URL_CONSTITUENCY_PARSE = "http://opener.olery.com/constituent-parser"
+URL_CONSTITUENCY_PARSE = server_ip + ":4444"
 
-URL_POLARITY_TAGGER = "http://opener.olery.com/polarity-tagger"
-#URL_POLARITY_TAGGER = "http://192.168.101.127:5555"
+#URL_POLARITY_TAGGER = "http://opener.olery.com/polarity-tagger"
+URL_POLARITY_TAGGER = server_ip + ":5555"
 
 URL_PROPERTY_TAGGER = "http://opener.olery.com/property-tagger"
-#URL_POLARITY_TAGGER = "http://192.168.101.127:6666"
+#URL_PROPERTY_TAGGER = server_ip + ":6666"
 
 URL_OPINION_DETECTOR = "http://opener.olery.com/opinion-detector"
-#URL_OPINION_DETECTOR = "http://192.168.101.127:7777"
+#URL_OPINION_DETECTOR = server_ip + ":7777"
 
 '''Named Entity Recognition and Named Entity Disambiguation '''
 
@@ -192,6 +195,7 @@ if __name__ == '__main__':
     text = raw_input("Introdueix el text a analitzar\n")
 
     print "--------------------------------------"
+    start_time = time.time()
 
     #print uncurl.parse("curl -d \"input=this is an english text&kaf=true\" http://localhost:9393 ")
 
@@ -220,9 +224,15 @@ if __name__ == '__main__':
     #print output_opinion_detector
 
 
+    print_polarity(output_opinion_detector)
+
+    print "-------------------"
+
+    print("--- %s seconds ---" % (time.time() - start_time))
+
     ''' Named Entity Recognition and Named Entity Disambiguation '''
 
-
+'''
     output_ner = call_ner(URL_NER,output_constituency_parse)
     print output_ner
     f_NER.write(output_ner)
@@ -243,7 +253,7 @@ if __name__ == '__main__':
     f_NED.close()
     f_COREFERENCE.close()
     f_CONSTITUENT_PARSER.close()
-
+'''
 
 '''
     print "output_polarity_tagger result:"
