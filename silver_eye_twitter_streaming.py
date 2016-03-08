@@ -19,6 +19,7 @@ import json
 import logging
 import json
 import logging
+import datetime
 
 logging.basicConfig(
     filename='silver_eye_twitter_streaming.log',
