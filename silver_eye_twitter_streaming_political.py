@@ -11,11 +11,12 @@ Thanks for the help.
 """
 
 import tweepy
-import pymongo
 from pymongo import MongoClient
 import json
 import logging
 import datetime
+
+from silver_eye_core import SilverEye
 
 logging.basicConfig(
     filename='political.log',
@@ -142,6 +143,10 @@ class CustomStreamListener(tweepy.StreamListener):
         self.tweets_counter_upyd = 0
         self.last_time = None
 
+        self.silverEye = SilverEye('0.0.0.0', 27017)
+
+        self.silverEye.load_objective_tags()
+
     def on_data(self, data):
         tweet = json.loads(data)
 
@@ -194,6 +199,9 @@ class CustomStreamListener(tweepy.StreamListener):
             tweet["Political"] = tag
             self.db.twitterPolitical.update(tweet, tweet, upsert=True)
             self.db.twitterUser.update({"screen_name": tweet['user']['screen_name']}, user, upsert=True)
+
+            self.silverEye.analyze_and_save_user_tweet(tweet, self.db.twitterPoliticalAnalyzed, self.db.twitterUser)
+
         except Exception as e:
             # Oh well, reconnect and keep trucking
             logging.error("On save to db:")
@@ -239,7 +247,7 @@ if __name__ == '__main__':
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
 
-    mongoClient = MongoClient('127.0.0.1', 27017)
+    mongoClient = MongoClient('0.0.0.0', 27017)
 
     while True:
         try:
