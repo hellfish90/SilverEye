@@ -12,7 +12,8 @@ from .forms import AnalysisForm
 from pymongo import MongoClient
 import opener
 
-server = '192.168.101.85'
+server = '127.0.0.1'
+
 port = 27017
 
 

@@ -13,7 +13,7 @@ window.onload = function () {
 			// Change type to "doughnut", "line", "splineArea", etc.
 			type: "column",
 			dataPoints: [
-			    {% for key, values in user.result_political.items %}
+			    {% for key, values in user.political_result.items %}
 
                     { label: "{{key}}",  y: {{values}} },
 

@@ -33,7 +33,7 @@ window.onload = function () {
 
 
     <ul class="collection">
-    {% for key, values in global.result_political.items %}
+    {% for key, values in global.political_counter.items %}
 
         {% if values > 0 %}
             <li  class="collection-item"><h8>{{key}} <span class="badge"> {{values}}</span></h8></li>
@@ -46,5 +46,8 @@ window.onload = function () {
         {% endif %}
     {% endfor %}
     </ul>
+
+
+
 
 {% endblock %}

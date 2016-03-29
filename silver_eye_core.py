@@ -16,6 +16,8 @@ class SilverEye:
 
         self.extractor.load_objective_tags()
 
+        self.origin_tweets_db = self.client.SilverEye['twitterPolitical']
+
     '''
     '   Analyze one tweet and save the user and the analyzed tweet
     '''
@@ -58,7 +60,7 @@ class SilverEye:
 
             data_set = db_origin.find()[init:final]
             for data in data_set:
-                self.analyze_and_save_user_tweet(data, db_destiny_data,db_destiny_user)
+                self.analyze_and_save_user_tweet(data, db_destiny_data, db_destiny_user)
 
             data_analyzed = final
 
@@ -130,7 +132,7 @@ class SilverEye:
 
         db_result.update({"unique": "unique"}, {"$set": {"result_political": final_political_results}}, upsert=True)
         db_result.update({"unique": "unique"}, {"$set": {"political_counter" : final_political_counter}}, upsert=True)
-        db_result.update({"unique": "unique"}, {"$set": {"political_entities_counter": users}}, upsert=True)
+        db_result.update({"unique": "unique"}, {"$set": {"users": users}}, upsert=True)
 
     '''
     '   Get all entities and assign the polarity of the tweet
