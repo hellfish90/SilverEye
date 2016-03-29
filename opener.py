@@ -190,6 +190,20 @@ def analyze_text(text):
 
     return result
 
+def get_aprox_polarity(sentiment):
+    negative = int(sentiment['opinion']['negative'])
+    negative = negative + int(sentiment['polarity']['negative'])
+
+    positive = int(sentiment['opinion']['positive'])
+    positive = positive + int(sentiment['polarity']['positive'])
+
+    if negative == positive:
+        return 0
+    elif negative > positive:
+        return -1
+    elif negative < positive:
+        return 1
+
 if __name__ == '__main__':
 
     text = raw_input("Introdueix el text a analitzar\n")
