@@ -145,7 +145,6 @@ class CustomStreamListener(tweepy.StreamListener):
 
         self.silverEye = SilverEye('0.0.0.0', 27017)
 
-        self.silverEye.load_objective_tags()
 
     def on_data(self, data):
         tweet = json.loads(data)
@@ -196,10 +195,10 @@ class CustomStreamListener(tweepy.StreamListener):
             tag = "EHBILDU"
 
         try:
+
             tweet["Political"] = tag
             self.db.twitterPolitical.update(tweet, tweet, upsert=True)
             self.db.twitterUser.update({"screen_name": tweet['user']['screen_name']}, user, upsert=True)
-
             self.silverEye.analyze_and_save_user_tweet(tweet, self.db.twitterPoliticalAnalyzed, self.db.twitterUser)
 
         except Exception as e:

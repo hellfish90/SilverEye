@@ -10,7 +10,7 @@ from group_identifier import GroupClassifier
 class SilverEye:
 
     def __init__(self, server_ip, server_port):
-        self.client = MongoClient(server_ip, server_port)
+        self.client = MongoClient(server_ip, server_port, connect=True)
         self.extractor = Extractor(self.client)
         self.group_classifier = GroupClassifier(self.extractor, self.client)
 
@@ -37,6 +37,7 @@ class SilverEye:
                                                               'entities': entities, 'polarity': polarity, \
                                                               'political': political}, upsert=True)
         destiny_user_db.update({'user': user}, {'user': user}, upsert=True)
+        print "HEYYYY"
 
     '''
     '   Analyze a set of tweets by blocks of the db_origin and save the tweet analyzed in db_destiny_data
@@ -59,8 +60,20 @@ class SilverEye:
             final = max_set + data_analyzed + 1
 
             data_set = db_origin.find()[init:final]
+
+#            q = JoinableQueue()
+
             for data in data_set:
                 self.analyze_and_save_user_tweet(data, db_destiny_data, db_destiny_user)
+                '''p = Process(target=self.analyze_and_save_user_tweet, args=(data,db_destiny_data,db_destiny_user))
+                p.daemon = True
+                p.start()
+            for item in range(0,(final-init)):
+                print "Launch" + str(item)
+                q.put(item)
+            q.join()
+            print "finish"
+            '''
 
             data_analyzed = final
 

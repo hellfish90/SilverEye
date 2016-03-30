@@ -12,10 +12,8 @@ class GroupClassifier:
         text = text.replace(",", " ")
 
         entities = []
-        print text
 
         for entity in self.extractor.ciudadanos:
-            print entity
             if entity.encode('utf8') in text:
                 entities.append(entity)
 
