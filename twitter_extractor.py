@@ -51,3 +51,14 @@ class Extractor:
     def delete_tag_to_objective_set(self, objective_set, tag):
 
         self.tags_db.update({"_id": objective_set}, {"$pull": {"tags": tag}}, upsert=True)
+
+    def get_all_tags(self):
+        collections = self.tags_db.find()
+
+        tags = []
+
+        for collection in collections:
+            for tag in collection['tags']:
+                tags.append(tag)
+
+        return tags
