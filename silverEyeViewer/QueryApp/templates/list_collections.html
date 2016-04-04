@@ -3,28 +3,48 @@
 
 {% load appname_tags %}
 
-<div class="card-panel teal">
+    <div class="card-panel teal">
           <span class="white-text">Collection Tags</span>
-        </div>
-    <ul class="collapsible" data-collapsible="accordion">
-        {% for collection in collections %}
-            <li>
-              <div class="collapsible-header purple lighten-3"><i class="material-icons"></i>{{ collection|mongo_id }}</div>
-              <div class="collapsible-body">
+    </div>
 
-                  <div class="collection">
-                      <a style="margin-left: 10px;" href="/query/collections/tags/add" class="collection-item"><i class="material-icons ">add</i></a>
-                      {% for tag in collection.tags %}
-                        <a style="margin-left: 10px;" href="/query/collections/tags/add" class="collection-item">{{ tag }}</a>
-                      {% endfor %}
-                  </div>
-              </div>
-            </li>
+        {% for collection in collections %}
+            <ul class="collection" >
+                <div class="card-panel teal">
+                    <span class="white-text">{{ collection|mongo_id }}</span>
+                    <div class="right" style="margin-top: -5px;">
+                        <a href="/query/collections/remove/{{collection|mongo_id}}">
+                            <button class="btn waves-effect pink accent-3" name="action">
+                                <i class="material-icons right" >delete</i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <li class="collection-item">
+                    <div class="center">
+                        <a style="margin-left: 10px;" href="/query/collections/tags/add" class="collection-item"><i class="material-icons ">add</i></a>
+                    </div>
+                </li>
+                {% for tag in collection.tags %}
+                <li class="collection-item">
+                    <span style="margin-left: 10px;" class="collection-item">{{ tag }}</span>
+                    <div class="right" style="margin-top: -10px;">
+                        <a  href="/query/collections/tags/remove/{{ collection|mongo_id }}/{{tag}}">
+                            <button class="btn waves-effect pink accent-3" type="submit" name="action">
+                                <i class="material-icons right">delete</i>
+                            </button>
+                        </a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
         {% endfor %}
-    </ul>
+
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-      <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+      <a href="/query/collections/add" class="btn-floating btn-large waves-effect waves-light red">
+          <i class="material-icons">add</i>
+      </a>
 </div>
 
 

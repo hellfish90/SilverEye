@@ -3,10 +3,10 @@
 {% load appname_tags %}
 
     <div class="card-panel teal">
-        <span class="white-text">Create Tag</span>
+        <span class="white-text">Create Collection</span>
     </div>
 
-    <form action="/query/collections/tags/add" method="post">
+    <form action="/query/collections/add" method="post">
         {{form.as_p}}
         <input type="submit" value="Submit">
     </form>
