@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import opener
-
 from pymongo import MongoClient
-from twitter_extractor import Extractor
-from group_identifier import GroupClassifier
+
+import sentiment_analysis
+from collection_classifier import GroupClassifier
+from collection_manager import Extractor
 
 
 class SilverEye:
@@ -18,6 +18,9 @@ class SilverEye:
 
         self.origin_tweets_db = self.client.SilverEye['twitterPolitical']
 
+    def start_extractor(self):
+        self.extractor.init_twitter_extractor(self)
+
     '''
     '   Analyze one tweet and save the user and the analyzed tweet
     '''
@@ -30,8 +33,8 @@ class SilverEye:
 
         entities = self.group_classifier.get_entities_by_tweet(text)
         political = self.group_classifier.get_political_party_counter_by_entities(entities)
-        polarity = opener.analyze_text(text)
-        polarity = opener.get_aprox_polarity(polarity)
+        polarity = sentiment_analysis.analyze_text(text)
+        polarity = sentiment_analysis.get_aprox_polarity(polarity)
 
         destiny_data_db.update({'user': user, 'text': text}, {'user': user, "text": text, "coordinates": coordinates, \
                                                               'entities': entities, 'polarity': polarity, \

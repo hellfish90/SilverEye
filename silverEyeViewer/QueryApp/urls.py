@@ -1,7 +1,7 @@
 __author__ = 'Marc'
 
 from django.conf.urls import patterns, include, url
-import views
+import views, views_collection_manager
 
 urlpatterns = [
     url(r'^listusers/(?P<limitnumber>\w+)/(?P<maxnumber>\w+)$', views.list_twitter_users),
@@ -10,5 +10,8 @@ urlpatterns = [
     url(r'^listusersanalized/(?P<limitnumber>\w+)/(?P<maxnumber>\w+)$', views.list_twitter_users_analized),
     url(r'^user/(?P<id>\w+)/$', views.user_analized),
     url(r'^global/$', views.global_results),
+
+    url(r'^collections/$', views_collection_manager.list_collections),
+    url(r'^collections/tags/add$', views_collection_manager.add_tag_to_collection),
 ]
 

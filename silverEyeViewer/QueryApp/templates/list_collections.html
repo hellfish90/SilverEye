@@ -1,0 +1,32 @@
+{% extends "BaseSite.html" %}
+{%block content %}
+
+{% load appname_tags %}
+
+<div class="card-panel teal">
+          <span class="white-text">Collection Tags</span>
+        </div>
+    <ul class="collapsible" data-collapsible="accordion">
+        {% for collection in collections %}
+            <li>
+              <div class="collapsible-header purple lighten-3"><i class="material-icons"></i>{{ collection|mongo_id }}</div>
+              <div class="collapsible-body">
+
+                  <div class="collection">
+                      <a style="margin-left: 10px;" href="/query/collections/tags/add" class="collection-item"><i class="material-icons ">add</i></a>
+                      {% for tag in collection.tags %}
+                        <a style="margin-left: 10px;" href="/query/collections/tags/add" class="collection-item">{{ tag }}</a>
+                      {% endfor %}
+                  </div>
+              </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+</div>
+
+
+
+{% endblock %}

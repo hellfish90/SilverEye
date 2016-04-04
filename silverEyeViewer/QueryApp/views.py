@@ -81,7 +81,7 @@ def list_twitter_status(request, limitnumber=0, maxnumber=150):
         #print sentiment
         color = get_color_by_sentiment(sentiment)
         entities = get_entities(text)
-        relevantTweet = {'tweet':tweet['text'], 'sentiment':sentiment, 'place':tweet['place'], 'color':color, 'entities': entities}
+        relevantTweet = {'tweet': tweet['text'], 'sentiment': sentiment, 'place': tweet['place'], 'color':color, 'entities': entities}
 
         dataSend.append(relevantTweet)
 

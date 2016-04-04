@@ -37,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'QueryApp'
+    'QueryApp',
+    'QueryApp.templatetags.appname_tags'
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,0 +1,12 @@
+{% extends "BaseSite.html" %}
+{%block content %}
+{% load appname_tags %}
+
+<form action="/query/collections/tags/add" method="post">
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+</form>
+
+
+
+{% endblock %}

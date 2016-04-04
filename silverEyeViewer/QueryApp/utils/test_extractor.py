@@ -1,10 +1,10 @@
-from twitter_extractor import Extractor
+from core import SilverEye
 from pymongo import MongoClient
 
 if __name__ == "__main__":
 
     client = MongoClient('0.0.0.0', 27017, connect=True)
 
-    extractor = Extractor(client)
+    silverEye = SilverEye('0.0.0.0', 27017)
 
-    print extractor.get_all_tags()
+    silverEye.start_extractor()

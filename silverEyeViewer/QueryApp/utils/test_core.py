@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from silver_eye_core import SilverEye
+from core import SilverEye
 
 if __name__ == "__main__":
     silverEye = SilverEye('0.0.0.0', 27017)

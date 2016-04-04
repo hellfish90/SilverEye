@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
@@ -8,6 +14,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
     <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+    <script>
+
+        $(document).ready(function(){
+            $('.collapsible').collapsible({
+              accordion : true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+            });
+          });
+
+        $(document).ready(function() {
+            $('select').material_select();
+          });
+
+    </script>
 
     <meta charset="UTF-8">
     <title>SilverEye</title>
@@ -22,6 +43,7 @@
         <li><a href="/query/sentiment/">Sentiment</a></li>
         <li><a href="/query/listusers/0/10">Users</a></li>
         <li><a href="/query/global/">Global</a></li>
+        <li><a href="/query/collections/">Collections Tags</a></li>
 
       </ul>
     </div>

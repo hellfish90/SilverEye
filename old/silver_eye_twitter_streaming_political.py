@@ -195,7 +195,6 @@ class CustomStreamListener(tweepy.StreamListener):
             tag = "EHBILDU"
 
         try:
-
             tweet["Political"] = tag
             self.db.twitterPolitical.update(tweet, tweet, upsert=True)
             self.db.twitterUser.update({"screen_name": tweet['user']['screen_name']}, user, upsert=True)
