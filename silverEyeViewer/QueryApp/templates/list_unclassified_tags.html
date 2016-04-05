@@ -1,6 +1,10 @@
 {% extends "BaseSite.html" %}
 {%block content %}
 
+    <div id="image_collection" class="card-panel deep-purple lighten-2">
+          <span class="white-text">Unclassified Tags</span>
+    </div>
+
     <ul class="collapsible" data-collapsible="accordion">
         {% for tag in tags %}
         <li>
@@ -13,6 +17,7 @@
           <div class=" center collapsible-body">
 
               <div class="teal indigo lighten-5">
+
                 <a style="margin-left: 10px;" href="/query/collections/tags/add" class="collection-item teal indigo lighten-5">
                 <button class="btn waves-effect teal darken-1" type="submit" name="action">
                      <i class="material-icons ">add</i>
