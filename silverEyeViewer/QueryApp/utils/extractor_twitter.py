@@ -62,6 +62,7 @@ class ExtractorTwitterListener(tweepy.StreamListener):
         print tweet['text']
 
         try:
+            self.db.lasTweet.update({"_id": 0}, {"$set": {"tweet": tweet}}, upsert=True)
             self.db.twitterPolitical.update(tweet, tweet, upsert=True)
             self.db.twitterUser.update({"screen_name": tweet['user']['screen_name']}, user, upsert=True)
             self.silverEye.analyze_and_save_user_tweet(tweet, self.db.twitterPoliticalAnalyzed, self.db.twitterUser)

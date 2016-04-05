@@ -1,0 +1,20 @@
+{% extends "BaseSite.html" %}
+{%block content %}
+{% load appname_tags %}
+
+<script>
+    setInterval(function(){call_last_tweet();}, 2);
+</script>
+
+<h3>Last Tweet</h3>
+
+<div class="card-panel teal lighten-2">
+    <span id="toptitle">tweet</span>
+</div>
+
+<a href="/query/manage/start" class="waves-effect waves-light btn"><i class="material-icons left">play_arrow</i>Start</a>
+<a href="/query/manage/stop" class="waves-effect waves-light btn red"><i class="material-icons left">stop</i>Stop</a>
+<a href="/query/manage/restart" class="waves-effect waves-light btn blue"><i class="material-icons left">loop</i>Restart</a>
+
+
+{% endblock %}

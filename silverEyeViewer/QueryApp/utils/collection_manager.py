@@ -6,7 +6,11 @@ import logging
 import pymongo
 import tweepy
 
-import threading, time
+import threading
+
+# Max 400 keywords
+
+# https://dev.twitter.com/streaming/overview/request-parameters
 
 from extractor_twitter import ExtractorTwitterListener
 import dummy_tags
@@ -133,6 +137,8 @@ class Extractor:
             auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
             auth.set_access_token(access_token, access_token_secret)
             api = tweepy.API(auth)
+
+            print keywords
 
             while self.search:
                 try:

@@ -7,11 +7,5 @@ if __name__ == "__main__":
 
     silverEye.start_extractor()
 
-    time.sleep(7)
-    silverEye.stop_extractor()
-
-    time.sleep(7)
-    silverEye.restart_extractor()
-
-    time.sleep(7)
+    time.sleep(60)
     silverEye.stop_extractor()

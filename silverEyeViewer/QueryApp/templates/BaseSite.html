@@ -15,8 +15,23 @@
 
     <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-
     <script>
+
+        function call_last_tweet() {
+
+            $.ajax({
+                type: "GET",
+                url: "/query/manage/last/tweet",
+                async: false,
+                success: function(last_tweet) {
+
+                    $(document).ready(function() {
+                        $('#toptitle').text(last_tweet)
+                     });
+                }
+            });
+
+        }
 
         $(document).ready(function(){
             $('.collapsible').collapsible({
@@ -61,12 +76,13 @@
     <div class="nav-wrapper deep-purple darken-1">
       <a href="#" class="brand-logo right">SilverEye</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="/query/listusersanalized/0/10">Analysed Users</a></li>
-        <li><a href="/query/sentiment/">Sentiment</a></li>
-        <li><a href="/query/listusers/0/10">Users</a></li>
-        <li><a href="/query/global/">Global</a></li>
-        <li><a href="/query/collections/">Collections Tags</a></li>
+          <li><a href="/query/listusersanalized/0/10">Analysed Users</a></li>
+          <li><a href="/query/sentiment/">Sentiment</a></li>
+          <li><a href="/query/listusers/0/10">Users</a></li>
+          <li><a href="/query/global/">Global</a></li>
+          <li><a href="/query/collections/">Collections Tags</a></li>
           <li><a href="/query/collections/tags/unclassified">Unclassified Tags</a></li>
+          <li><a href="/query/manage/status">Status</a></li>
 
       </ul>
     </div>
