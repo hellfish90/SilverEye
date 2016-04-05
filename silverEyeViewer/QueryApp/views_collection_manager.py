@@ -4,6 +4,8 @@ from pymongo import MongoClient
 from django.shortcuts import render
 from django.shortcuts import redirect
 
+from Utils.generate_circle_collections_tags import generate_flare
+
 server = '127.0.0.1'
 
 port = 27017
@@ -15,6 +17,7 @@ def list_collections(request):
     collection_manager = Extractor(client)
 
     collections = collection_manager.get_all_collections()
+    generate_flare()
 
     return render(request, 'list_collections.html', {'collections': collections})
 
