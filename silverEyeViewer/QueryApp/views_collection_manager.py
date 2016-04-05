@@ -22,6 +22,15 @@ def list_collections(request):
     return render(request, 'list_collections.html', {'collections': collections})
 
 
+def list_unclassified_tags(request):
+    client = MongoClient(server, port, connect=True)
+    collection_manager = Extractor(client)
+
+    tags = collection_manager.get_all_unclassified_tags()
+    generate_flare()
+
+    return render(request, 'list_unclassified_tags.html', {'tags': tags})
+
 def add_tag_to_collection(request):
 
     client = MongoClient(server, port, connect=True)

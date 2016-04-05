@@ -1,0 +1,32 @@
+{% extends "BaseSite.html" %}
+{%block content %}
+
+    <ul class="collapsible" data-collapsible="accordion">
+        {% for tag in tags %}
+        <li>
+          <div class="collapsible-header">
+            <div class="card-panel deep-purple lighten-3">
+                <span class="black-text">{{tag.entity}}</span>
+              <span class="right">{{tag.repeat}}</span>
+            </div>
+          </div>
+          <div class=" center collapsible-body">
+
+              <div class="teal indigo lighten-5">
+                <a style="margin-left: 10px;" href="/query/collections/tags/add" class="collection-item teal indigo lighten-5">
+                <button class="btn waves-effect teal darken-1" type="submit" name="action">
+                     <i class="material-icons ">add</i>
+                </button>
+                </a>
+              </div>
+
+              <div class=" collection">
+                  {% for entity in tag.entities %}
+                    <a class=" left collection-item"><span class="indigo-text">{{entity}}</span></a>
+                  {% endfor %}
+              </div>
+          </div>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

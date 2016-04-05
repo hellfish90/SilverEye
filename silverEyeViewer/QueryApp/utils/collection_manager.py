@@ -3,6 +3,7 @@
 import json
 import logging
 
+import pymongo
 import tweepy
 
 from extractor_twitter import ExtractorTwitterListener
@@ -33,6 +34,7 @@ class Extractor:
         self.stream = None
 
         self.tags_db = self.db.SilverEye.SelectedTags
+        self.unclassified_tags_db = self.db.SilverEye.UnclassifiedEntities
 
     def load_objective_tags(self):
 
@@ -80,6 +82,9 @@ class Extractor:
 
     def get_all_collections(self):
         return self.tags_db.find()
+
+    def get_all_unclassified_tags(self):
+        return self.unclassified_tags_db.find().sort("repeat", pymongo.DESCENDING)
 
     def init_twitter_extractor(self, silvereye_core):
         keywords = self.get_all_tags()
