@@ -45,13 +45,13 @@ URL_CONSTITUENT_PARSER = "http://192.168.101.127:1010"
 
 text = "el mundo se va a la mierda i aqui nadie hace nada maldito asco"
 
-f_NER = open('../Log/NER.kaf', 'w')
+f_NER = open('QueryApp/Log/NER.kaf', 'w')
 
-f_NED = open('../Log/NED.kaf', 'w')
+f_NED = open('QueryApp/Log/NED.kaf', 'w')
 
-f_COREFERENCE = open('../Log/COREFERENCE.kaf', 'w')
+f_COREFERENCE = open('QueryApp/Log/COREFERENCE.kaf', 'w')
 
-f_CONSTITUENT_PARSER = open('../Log/CONSTITUENT_PARSER.kaf', 'w')
+f_CONSTITUENT_PARSER = open('QueryApp/Log/CONSTITUENT_PARSER.kaf', 'w')
 
 
 def call_language_identifier(URL, data):

@@ -17,11 +17,16 @@ class SilverEye:
         self.group_classifier = GroupClassifier(self.extractor, self.client)
 
         self.extractor.load_objective_tags()
-
         self.origin_tweets_db = self.client.SilverEye['twitterPolitical']
 
     def start_extractor(self):
         self.extractor.init_twitter_extractor(self)
+
+    def restart_extractor(self):
+        self.extractor.restart_twitter_extractor(self)
+
+    def stop_extractor(self):
+        self.extractor.stop_twitter_extractor()
 
     '''
     '   Analyze one tweet and save the user and the analyzed tweet

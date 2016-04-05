@@ -6,6 +6,8 @@ import logging
 import pymongo
 import tweepy
 
+import threading, time
+
 from extractor_twitter import ExtractorTwitterListener
 import dummy_tags
 
@@ -31,10 +33,12 @@ class Extractor:
 
         self.db = client_db
 
-        self.stream = None
+        self.twitter_extractor = None
 
         self.tags_db = self.db.SilverEye.SelectedTags
         self.unclassified_tags_db = self.db.SilverEye.UnclassifiedEntities
+
+
 
     def load_objective_tags(self):
 
@@ -86,42 +90,68 @@ class Extractor:
     def get_all_unclassified_tags(self):
         return self.unclassified_tags_db.find().sort("repeat", pymongo.DESCENDING)
 
-    def init_twitter_extractor(self, silvereye_core):
-        keywords = self.get_all_tags()
-        logging.debug('extractor starting ...')
-        logging.debug("------------------")
+    def init_twitter_extractor(self, silver_eye_core):
+        self.twitter_extractor = self.TwitterExtractorThread(silver_eye_core, self.db, self)
+        self.twitter_extractor.start()
 
-        with open('../Config/config.json', 'r') as f:
-            config = json.load(f)
-            access_token = config['access_token']
-            access_token_secret = config['access_token_secret']
-            consumer_key = config['consumer_key']
-            consumer_secret = config['consumer_secret']
-            database_name = config['database_name']
+    def restart_twitter_extractor(self, silver_eye_core):
+        if self.twitter_extractor is not None:
+            self.twitter_extractor.stop()
+        self.init_twitter_extractor(silver_eye_core)
 
-        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-        auth.set_access_token(access_token, access_token_secret)
-        api = tweepy.API(auth)
+    def stop_twitter_extractor(self):
+        if self.twitter_extractor is not None:
+            self.twitter_extractor.stop()
+        print "Stopped"
 
-        while True:
-            try:
-                logging.debug('Connecting to Twitter stream ...')
-                self.stream = tweepy.streaming.Stream(auth, ExtractorTwitterListener(api, self.db, self.silvereye_core))
-                self.stream.filter(track=keywords)
+    class TwitterExtractorThread (threading.Thread):
 
-            except Exception as e:
-                logging.error(e.__class__)
-                logging.error(e.__class__)
-                logging.error(e)
-                logging.error("------------------")
-                continue
+        def __init__(self, silvereye_core, db, extractor):
+            threading.Thread.__init__(self)
+            self.silvereye_core = silvereye_core
+            self.stream = None
+            self.db = db
+            self.extractor = extractor
+            self.search = True
 
-            except KeyboardInterrupt:
-                self.stream.disconnect()
-                self.db.close()
-                break
+        def run(self):
+            self.init_twitter_extractor()
 
-    def restart_twitter_extractor(self):
-        if self.stream is not None:
+        def init_twitter_extractor(self):
+            keywords = self.extractor.get_all_tags()
+            logging.debug('extractor starting ...')
+            logging.debug("------------------")
+
+            with open('QueryApp/Config/config.json', 'r') as f:
+                config = json.load(f)
+                access_token = config['access_token']
+                access_token_secret = config['access_token_secret']
+                consumer_key = config['consumer_key']
+                consumer_secret = config['consumer_secret']
+                database_name = config['database_name']
+
+            auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+            auth.set_access_token(access_token, access_token_secret)
+            api = tweepy.API(auth)
+
+            while self.search:
+                try:
+                    logging.debug('Connecting to Twitter stream ...')
+                    self.stream = tweepy.streaming.Stream(auth, ExtractorTwitterListener(api, self.db, self.silvereye_core))
+                    self.stream.filter(track=keywords)
+
+                except Exception as e:
+                    logging.error(e.__class__)
+                    logging.error(e.__class__)
+                    logging.error(e)
+                    logging.error("------------------")
+                    continue
+
+                except KeyboardInterrupt:
+                    self.stream.disconnect()
+                    self.db.close()
+                    break
+
+        def stop(self):
+            self.search = False
             self.stream.disconnect()
-        self.init_twitter_extractor()
