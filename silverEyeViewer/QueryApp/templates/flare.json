@@ -1,0 +1,135 @@
+{"name":"SilverEye",
+"children":[{
+"name":"ciudadanos",
+"children": [
+{"name": "@GirautaOficial", "size": 555},
+{"name": "#AlbertRivera", "size": 555},
+{"name": "@Albert_Rivera", "size": 555},
+{"name": "@CiudadanosCs", "size": 555},
+{"name": "#RutaCiudadana", "size": 555},
+{"name": "#ConIlusion", "size": 555},
+{"name": "@sdelcampocs", "size": 555},
+{"name": "#Ilusión", "size": 555},
+{"name": "#Ciudadanos", "size": 555},
+{"name": "@InesArrimadas", "size": 555},
+{"name": "#AlbertPresidente", "size": 555},
+{"name": "C's", "size": 555},
+{"name": "Albert_Rivera", "size": 555}
+]
+},
+{
+"name":"democracia_llibertat",
+"children": [
+{"name": "@ConvergenciaCAT", "size": 555},
+{"name": "@DemocratesCAT", "size": 555},
+{"name": "@reagrupament", "size": 555},
+{"name": "#possible", "size": 555},
+{"name": "@20dl_cat", "size": 555},
+{"name": "@joseprull", "size": 555},
+{"name": "@joanbague", "size": 555},
+{"name": "@peresalo68", "size": 555},
+{"name": "@Ferran_Bel", "size": 555},
+{"name": "@franceschoms", "size": 555}
+]
+},
+{
+"name":"ehbildu",
+"children": [
+{"name": "@ehbildu", "size": 555},
+{"name": "#BilduErabakira", "size": 555},
+{"name": "#BilduErabakira", "size": 555},
+{"name": "#EH Bildu", "size": 555},
+{"name": "@ehbildu_legebil", "size": 555}
+]
+},
+{
+"name":"erc",
+"children": [
+{"name": "ERC", "size": 555},
+{"name": "#SomRepública", "size": 555},
+{"name": "@Esquerra_ERC", "size": 555},
+{"name": "@GabrielRufian", "size": 555},
+{"name": "@Esquerra_ERC", "size": 555},
+{"name": "@JoanTarda", "size": 555},
+{"name": "@junqueras", "size": 555},
+{"name": "@MartaRovira", "size": 555}
+]
+},
+{
+"name":"podemos",
+"children": [
+{"name": "#UNPAISCONTIGO", "size": 555},
+{"name": "@ahorapodemos", "size": 555},
+{"name": "#Un6Dcontigo", "size": 555},
+{"name": "#6DHagamosHistoria", "size": 555},
+{"name": "@Pablo_Iglesias_", "size": 555},
+{"name": "@AdaColau", "size": 555},
+{"name": "@VickyRosell", "size": 555},
+{"name": "#LeyDeImpunidad", "size": 555},
+{"name": "Podemos", "size": 555},
+{"name": "Pablo Iglesias", "size": 555}
+]
+},
+{
+"name":"pp",
+"children": [
+{"name": "partidopopular", "size": 555},
+{"name": "partido popular", "size": 555},
+{"name": "pp", "size": 555},
+{"name": "PP", "size": 555},
+{"name": "#PP", "size": 555},
+{"name": "#EspañaEnSerio", "size": 555},
+{"name": "@marianorajoy", "size": 555},
+{"name": "@AlfonsoAlonsoPP", "size": 555},
+{"name": "@PPopular", "size": 555},
+{"name": "#VotaPP", "size": 555},
+{"name": "@Sorayapp", "size": 555},
+{"name": "@mdcospedal", "size": 555},
+{"name": "pablocasado_", "size": 555},
+{"name": "#YoVotoPP", "size": 555},
+{"name": "#EmpleoEnSerio", "size": 555},
+{"name": "Rajoy", "size": 555},
+{"name": "@NNGG_Es", "size": 555}
+]
+},
+{
+"name":"psoe",
+"children": [
+{"name": "psoe", "size": 555},
+{"name": "psc", "size": 555},
+{"name": "PsoE", "size": 555},
+{"name": "@socialistes_cat", "size": 555},
+{"name": "#FemForaRajoy", "size": 555},
+{"name": "#SomLaSolucio", "size": 555},
+{"name": "@carmechacon", "size": 555},
+{"name": "@sanchezcastejon", "size": 555},
+{"name": "@PSOE", "size": 555},
+{"name": "#PSOE", "size": 555},
+{"name": "PSOE", "size": 555},
+{"name": "#OrgulloSocialista", "size": 555},
+{"name": "#VOTAPSOE", "size": 555},
+{"name": "#PedroPresidente", "size": 555},
+{"name": "#UnFuturoParaLaMayoría", "size": 555}
+]
+},
+{
+"name":"unio",
+"children": [
+{"name": "@unio_cat", "size": 555},
+{"name": "@DuranLleida", "size": 555},
+{"name": "#Solucions!", "size": 555},
+{"name": "@Marti_Barbera", "size": 555},
+{"name": "@Ramon_Espadaler", "size": 555}
+]
+},
+{
+"name":"upyd",
+"children": [
+{"name": "@UPYD", "size": 555},
+{"name": "#VotaUPYD", "size": 555},
+{"name": "#MásEspaña", "size": 555},
+{"name": "@Herzogoff", "size": 555},
+{"name": "@sryuriaguilar", "size": 555}
+]
+}
+]}

@@ -7,6 +7,8 @@ from collection_classifier import GroupClassifier
 from collection_manager import Extractor
 
 
+# http://bl.ocks.org/mbostock/4063530
+
 class SilverEye:
 
     def __init__(self, server_ip, server_port):
