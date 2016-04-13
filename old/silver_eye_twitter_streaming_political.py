@@ -16,7 +16,7 @@ import json
 import logging
 import datetime
 
-from silver_eye_core import SilverEye
+from core import SilverEye
 
 logging.basicConfig(
     filename='political.log',
@@ -233,7 +233,7 @@ if __name__ == '__main__':
     logging.debug("------------------")
 
     # Load configuration
-    with open('config.json', 'r') as f:
+    with open('Config.json', 'r') as f:
         config = json.load(f)
         access_token = config['access_token']
         access_token_secret = config['access_token_secret']

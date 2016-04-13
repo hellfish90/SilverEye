@@ -4,7 +4,6 @@ from pymongo import MongoClient
 from django.shortcuts import render
 from django.shortcuts import redirect
 
-from Utils.generate_circle_collections_tags import generate_flare
 from Utils.core import SilverEye
 
 server = '127.0.0.1'

@@ -17,7 +17,7 @@ import dummy_tags
 
 logging.basicConfig(
     filename='QueryApp/Log/extractor.log',
-    level=logging.DEBUG,
+    level=logging.WARNING,
     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
     datefmt='%d-%m-%y %H:%M')
 

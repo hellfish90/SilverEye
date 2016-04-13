@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import tweepy
-from pymongo import MongoClient
 import json
 import logging
 import datetime
