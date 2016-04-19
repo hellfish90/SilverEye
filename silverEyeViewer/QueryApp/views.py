@@ -87,6 +87,7 @@ def list_twitter_status(request, limitnumber=0, maxnumber=150):
 
     return render(request, 'listStatusTwitter.html', {'status': dataSend})
 
+
 def list_twitter_users_analized(request, limitnumber=0, maxnumber=150):
 
     #Dev
@@ -104,8 +105,6 @@ def list_twitter_users_analized(request, limitnumber=0, maxnumber=150):
     return render(request, 'listUsersAnalized.html', {'users': data})
 
 
-
-
 def user_analized(request, id=0):
 
     client = MongoClient(server, port)
@@ -117,6 +116,7 @@ def user_analized(request, id=0):
     data = db_data.find({"user": int(id)})
 
     return render(request, 'userAnalized.html', {'user': user, 'data_set':data})
+
 
 def global_results(request):
 

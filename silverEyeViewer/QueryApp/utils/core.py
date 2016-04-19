@@ -3,8 +3,8 @@
 from pymongo import MongoClient
 
 import sentiment_analysis
-from collection_classifier import GroupClassifier
-from collection_manager import Extractor
+from collection_classifier import CollectionClassifier
+from extractor_manager import Extractor
 
 
 # http://bl.ocks.org/mbostock/4063530
@@ -14,10 +14,13 @@ class SilverEye:
     def __init__(self, server_ip, server_port):
         self.client = MongoClient(server_ip, server_port, connect=True)
         self.extractor = Extractor(self.client)
-        self.group_classifier = GroupClassifier(self.extractor, self.client)
+        self.collection_classifier = CollectionClassifier(self.client)
 
         self.extractor.load_objective_tags()
         self.origin_tweets_db = self.client.SilverEye['twitterPolitical']
+
+    def get_all_classified_tags_name(self):
+        return self.collection_classifier.get_all_classified_tags_name()
 
     def start_extractor(self):
         self.extractor.init_twitter_extractor(self)
@@ -38,16 +41,15 @@ class SilverEye:
         user = tweet['user']['id']
         coordinates = tweet['coordinates']
 
-        entities = self.group_classifier.get_entities_by_tweet(text)
-        political = self.group_classifier.get_political_party_counter_by_entities(entities)
+        entities = self.collection_classifier.get_tags_of_tweet(text)
+        political = self.collection_classifier.get_collection_by_tags(entities)
         polarity = sentiment_analysis.analyze_text(text)
         polarity = sentiment_analysis.get_aprox_polarity(polarity)
 
         destiny_data_db.update({'user': user, 'text': text}, {'user': user, "text": text, "coordinates": coordinates, \
                                                               'entities': entities, 'polarity': polarity, \
                                                               'political': political}, upsert=True)
-        destiny_user_db.update({'user': user}, {'user': user}, upsert=True)
-        print "HEYYYY"
+        destiny_user_db.update({'user': user}, {'user': tweet['user']}, upsert=True)
 
     '''
     '   Analyze a set of tweets by blocks of the db_origin and save the tweet analyzed in db_destiny_data
@@ -128,6 +130,7 @@ class SilverEye:
 
     '''
     '   Global results by politican group
+    '   *Generic
     '''
     def global_result_by_political_group(self):
 

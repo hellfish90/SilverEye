@@ -14,6 +14,7 @@ import threading
 
 from extractor_twitter import ExtractorTwitterListener
 import dummy_tags
+from DAOTags import DAOTags
 
 logging.basicConfig(
     filename='QueryApp/Log/extractor.log',
@@ -68,34 +69,8 @@ class Extractor:
         self.tags_db.update({"_id": "unio"}, {'tags': dummy_tags.unio}, upsert=True)
         self.tags_db.update({"_id": "upyd"}, {'tags': dummy_tags.upyd}, upsert=True)
 
-    def add_collection(self, collection_name):
-        self.tags_db.insert_one({"_id": collection_name})
-
-    def remove_collection(self, collection_name):
-        self.tags_db.delete_many({"_id": collection_name})
-
-    def add_tag_to_collection(self, objective_set, tag):
-        self.tags_db.update({"_id": objective_set}, {"$addToSet": {"tags": tag}}, upsert=True)
-
-    def delete_tag_to_collection(self, objective_set, tag):
-        self.tags_db.update({"_id": objective_set}, {"$pull": {"tags": tag}}, upsert=True)
-
-    def get_all_tags(self):
-        collections_tags = self.tags_db.find()
-        tags = []
-        for collection in collections_tags:
-            for tag in collection['tags']:
-                tags.append(tag)
-        return tags
-
-    def get_all_collections(self):
-        return self.tags_db.find()
-
-    def get_all_unclassified_tags(self):
-        return self.unclassified_tags_db.find().sort("repeat", pymongo.DESCENDING)
-
     def init_twitter_extractor(self, silver_eye_core):
-        self.twitter_extractor = self.TwitterExtractorThread(silver_eye_core, self.db, self)
+        self.twitter_extractor = self.TwitterExtractorThread(silver_eye_core, self.db)
         self.twitter_extractor.start()
 
     def restart_twitter_extractor(self, silver_eye_core):
@@ -110,19 +85,18 @@ class Extractor:
 
     class TwitterExtractorThread (threading.Thread):
 
-        def __init__(self, silvereye_core, db, extractor):
+        def __init__(self, silvereye_core, db):
             threading.Thread.__init__(self)
             self.silvereye_core = silvereye_core
             self.stream = None
             self.db = db
-            self.extractor = extractor
             self.search = True
 
         def run(self):
             self.init_twitter_extractor()
 
         def init_twitter_extractor(self):
-            keywords = self.extractor.get_all_tags()
+            keywords = self.silvereye_core.get_all_classified_tags_name()
             logging.debug('extractor starting ...')
             logging.debug("------------------")
 

@@ -1,5 +1,5 @@
 
-from Utils.collection_manager import Extractor
+from Utils.extractor_manager import Extractor
 from pymongo import MongoClient
 from django.shortcuts import render
 from django.shortcuts import redirect
@@ -24,7 +24,7 @@ def get_last_tweet(request):
     tweet = [i for i in tweet][0]
     request.last_tweet = tweet
 
-    return render(request, 'last_tweet.html',{"last_tweet":tweet['tweet']['text']})
+    return render(request, 'last_tweet.html', {"last_tweet": tweet['tweet']['text']})
 
 
 def init_twitter_extractor(request):

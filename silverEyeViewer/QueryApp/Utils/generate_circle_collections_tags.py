@@ -1,34 +1,39 @@
 
 # -*- coding: utf-8 -*-
 from pymongo import MongoClient
-from collection_manager import Extractor
+from extractor_manager import Extractor
+from collection_classifier import CollectionClassifier
+
 
 def generate_flare():
     with open('QueryApp/templates/flare.json', 'w') as outfile:
 
         client = MongoClient('0.0.0.0', 27017, connect=True)
-        extractor = Extractor(client)
+        collections = CollectionClassifier(client)
         lines = []
 
-        collections = [a for a in extractor.get_all_collections()]
+        collections = [a for a in collections.get_all_collections()]
         last_collection = len(collections)
 
         outfile.write("{\"name\":\"SilverEye\",\n")
         outfile.write("\"children\":[")
 
         for collection in collections:
+            collection_name =list(collection)[0]
+            #print collection
             outfile.write("{\n")
-            outfile.write("\"name\":\""+collection["_id"]+"\",\n")
+            outfile.write("\"name\":\""+collection_name+"\",\n")
             outfile.write("\"children\": [\n")
-            if "tags" in collection:
-                print collection["tags"]
-                last_tag = len(collection["tags"])
 
-                for tag in collection["tags"]:
+            if len(collection[collection_name])>0:
+
+                last_tag = len(collection[collection_name])
+
+                for tag in collection[collection_name]:
                     if last_tag > 1:
-                        outfile.write("{\"name\": \""+tag.encode("utf-8")+"\", \"size\": 555},\n")
+                        outfile.write("{\"name\": \""+tag["_id"].encode("utf-8")+"\", \"size\": "+str((tag["repeat"]*100)+100)+"},\n")
                     else:
-                        outfile.write("{\"name\": \""+tag.encode("utf-8")+"\", \"size\": 555}\n")
+                        outfile.write("{\"name\": \""+tag["_id"].encode("utf-8")+"\", \"size\": "+str((tag["repeat"]*100)+100)+"}\n")
                     last_tag -= 1
 
                 outfile.write("]\n")

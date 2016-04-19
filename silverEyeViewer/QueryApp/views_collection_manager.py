@@ -1,42 +1,49 @@
 
-from Utils.collection_manager import Extractor
 from pymongo import MongoClient
 from django.shortcuts import render
 from django.shortcuts import redirect
 
 from Utils.generate_circle_collections_tags import generate_flare
+from Utils.collection_classifier import CollectionClassifier
+
+from .forms import TagsForm, CollectionsForm
 
 server = '127.0.0.1'
 
 port = 27017
 
-from .forms import TagsForm, CollectionsForm
 
 def list_collections(request):
     client = MongoClient(server, port, connect=True)
-    collection_manager = Extractor(client)
+    collection_manager = CollectionClassifier(client)
 
     collections = collection_manager.get_all_collections()
     generate_flare()
+
+    print collections
 
     return render(request, 'list_collections.html', {'collections': collections})
 
 
 def list_unclassified_tags(request):
     client = MongoClient(server, port, connect=True)
-    collection_manager = Extractor(client)
+    collection_manager = CollectionClassifier(client)
 
     tags = collection_manager.get_all_unclassified_tags()
     generate_flare()
 
-    return render(request, 'list_unclassified_tags.html', {'tags': tags})
+    print tags
+
+    return render(request, 'list_unclassified_tags.html', {'unclassified_tags': tags})
+
 
 def add_tag_to_collection(request):
 
     client = MongoClient(server, port, connect=True)
-    collection_manager = Extractor(client)
+    collection_manager = CollectionClassifier(client)
 
-    collections = collection_manager.get_all_collections()
+    collections = collection_manager.get_all_collection_names()
+    print collections
 
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -63,7 +70,7 @@ def add_tag_to_collection(request):
 def add_collection(request):
 
     client = MongoClient(server, port, connect=True)
-    collection_manager = Extractor(client)
+    collection_manager = CollectionClassifier(client)
 
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -88,19 +95,20 @@ def add_collection(request):
 def remove_collection(request, id):
 
     client = MongoClient(server, port, connect=True)
-    collection_manager = Extractor(client)
+    collection_manager = CollectionClassifier(client)
     collection_manager.remove_collection(id)
 
     return redirect('/query/collections/')
 
+
 def remove_tag(request, collection, tag):
 
     client = MongoClient(server, port, connect=True)
-    collection_manager = Extractor(client)
+    collection_manager = CollectionClassifier(client)
 
     print collection
     print tag
 
-    collection_manager.delete_tag_to_collection(collection, tag)
+    collection_manager.remove_tag_of_collection(collection, tag)
 
     return redirect('/query/collections/')

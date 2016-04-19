@@ -8,13 +8,13 @@
     <div id="image_collection" class="card-panel deep-purple lighten-2">
           <span class="white-text">Collection Tags</span>
     </div>
+        {% for dict in collections %}
 
-        {% for collection in collections %}
             <ul class="collection" >
                 <div class="card-panel deep-purple lighten-3">
-                    <span class="black-text">{{ collection|mongo_id }}</span>
+                    <span class="black-text">{{dict.keys.0}}</span>
                     <div class="right" style="margin-top: -5px;">
-                        <a href="/query/collections/remove/{{collection|mongo_id}}">
+                        <a href="/query/collections/remove/{{dict.keys.0}}">
                             <button class="btn waves-effect pink accent-3" name="action">
                                 <i class="material-icons right" >delete</i>
                             </button>
@@ -31,17 +31,19 @@
                         </a>
                     </div>
                 </li>
-                {% for tag in collection.tags %}
-                <li class="collection-item deep-purple lighten-5">
-                    <span style="margin-left: 10px;" class="collection-item black-text">{{ tag }}</span>
-                    <div class="right" style="margin-top: -10px;">
-                        <a  href="/query/collections/tags/remove/{{ collection|mongo_id }}/{{tag}}">
-                            <button class="btn waves-effect pink darken-1" type="submit" name="action">
-                                 <i class="material-icons right">delete</i>
-                            </button>
-                        </a>
-                    </div>
-                </li>
+                {% for dict1 in dict.values %}
+                    {% for tag in dict1 %}
+                    <li class="collection-item deep-purple lighten-5">
+                        <span style="margin-left: 10px;" class="collection-item black-text">{{tag.values.3}} -> {{ tag.values.1 }} </span>
+                        <div class="right" style="margin-top: -10px;">
+                            <a  href="/query/collections/tags/remove/{{ dict.keys.0}}/{{tag.values.1}}">
+                                <button class="btn waves-effect pink darken-1" type="submit" name="action">
+                                     <i class="material-icons right">delete</i>
+                                </button>
+                            </a>
+                        </div>
+                    </li>
+                    {% endfor %}
                 {% endfor %}
             </ul>
         {% endfor %}

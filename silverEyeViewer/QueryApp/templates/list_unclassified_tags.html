@@ -6,12 +6,12 @@
     </div>
 
     <ul class="collapsible" data-collapsible="accordion">
-        {% for tag in tags %}
+        {% for unclassified_tag in unclassified_tags %}
         <li>
           <div class="collapsible-header">
             <div class="card-panel deep-purple lighten-3">
-                <span class="black-text">{{tag.entity}}</span>
-              <span class="right">{{tag.repeat}}</span>
+                <span class="black-text">{{unclassified_tag.values.1 }}</span>
+              <span class="right">{{unclassified_tag.repeat}}</span>
             </div>
           </div>
           <div class=" center collapsible-body">
@@ -26,8 +26,8 @@
               </div>
 
               <div class=" collection">
-                  {% for entity in tag.entities %}
-                    <a class=" left collection-item"><span class="indigo-text">{{entity}}</span></a>
+                  {% for key, values in unclassified_tag.related.items %}
+                    <a class=" left collection-item"><span class="indigo-text">{{key}} <br> {{values}}</span></a>
                   {% endfor %}
               </div>
           </div>
