@@ -1,15 +1,14 @@
 #!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 import time
-
-
 from pymongo import MongoClient
-
 import SentimentAnalysisController
 from CollectionClassifierController import CollectionClassifierController
 from silverEyeViewer.QueryApp.DAO.DAOAnalyzedTweets import AnalyzedTweets
 from silverEyeViewer.QueryApp.DAO.DAOGlobalResults import GlobalResults
 from silverEyeViewer.QueryApp.DAO.DAOLastTweet import LastTweet
 from silverEyeViewer.QueryApp.DAO.DAOTweets import Tweets
+from silverEyeViewer.QueryApp.DAO.DAOTwitterCounter import TemporalTwitterAnalysis
 from silverEyeViewer.QueryApp.DAO.DAOTwitterUsers import TwitterUsers
 from silverEyeViewer.QueryApp.DAO.DAOUsersAnalyzed import UsersAnalyzed
 
@@ -25,6 +24,7 @@ class AnalysisController:
         self.analyzed_twitter_users_dao = UsersAnalyzed(db_client, database)
         self.global_results_dao = GlobalResults(db_client, database)
         self.last_tweet_dao = LastTweet(db_client, database)
+        self.temporal_twitter_analysis_dao = TemporalTwitterAnalysis(db_client, database)
 
     def analyze_tweet(self, tweet):
 
@@ -35,6 +35,7 @@ class AnalysisController:
 
             self.tweets_dao.save_new_tweet(tweet_id, tweet)
             self.users_dao.save_new_user(user_id, user)
+            self.last_tweet_dao.update_last_tweet(tweet)
 
             coordinates = tweet["coordinates"]
             place = tweet["place"]
@@ -153,6 +154,89 @@ class AnalysisController:
                                                       collection_global_positive_results,
                                                       collection_global_neutral_results,
                                                       collection_global_negative_results)
+
+    # No es te amb compte si amb un tweet surt contabilitzat 2 Elements del PP, això compta comun
+    def analyse_temporal_lines(self, initial_time=0):
+
+        self.temporal_twitter_analysis_dao.remove_all()
+
+        # half day
+        periode_time = 60 * 60 * 12
+
+        set_analyzed_tweets_by_temp = self.analyzed_tweets_dao.get_analyzed_tweets()
+
+        collections_temp_tweets_results = {}
+        collections_temp_counter_results = {}
+        collection_temp_positive_results = {}
+        collection_temp_negative_results = {}
+        collection_temp_neutral_results = {}
+
+        total_tweets = set_analyzed_tweets_by_temp.count()
+        tweets_num = 1
+        tweets_temp_num = 1
+
+        analyzed_tweet = set_analyzed_tweets_by_temp.next()
+        now_timestamp = analyzed_tweet["timestamp"]
+        last_temp_time = periode_time + long(now_timestamp)
+        first_temp_time = now_timestamp
+
+        while tweets_num < total_tweets:
+            print now_timestamp
+            print last_temp_time
+            print "\n"
+            tweets_temp_num += 1
+            tweets_num += 1
+
+            now_timestamp = analyzed_tweet["timestamp"]
+
+            for collection in analyzed_tweet["collections"].keys():
+                if collection in collections_temp_tweets_results.keys():
+                    polarity = analyzed_tweet["polarity"]
+                    collections_temp_tweets_results[collection] += polarity
+                    collections_temp_counter_results[collection] += 1
+
+                    if polarity > 0:
+                        collection_temp_positive_results[collection] += 1
+                    elif polarity < 0:
+                        collection_temp_negative_results[collection] += 1
+                    else:
+                        collection_temp_neutral_results[collection] += 1
+                else:
+                    polarity = analyzed_tweet["polarity"]
+                    collections_temp_tweets_results[collection] = polarity
+                    collections_temp_counter_results[collection] = 1
+
+                    collection_temp_positive_results[collection] = 0
+                    collection_temp_negative_results[collection] = 0
+                    collection_temp_neutral_results[collection] = 0
+
+                    if polarity > 0:
+                        collection_temp_positive_results[collection] = 1
+                    elif polarity < 0:
+                        collection_temp_negative_results[collection] = 1
+                    else:
+                        collection_temp_neutral_results[collection] = 1
+
+            if long(now_timestamp) > last_temp_time:
+                print "New________________"
+
+                last_temp_time = periode_time + long(now_timestamp)
+
+                self.temporal_twitter_analysis_dao.save_new_twitter_counter(first_temp_time, str(last_temp_time),
+                                                                        collections_temp_tweets_results, tweets_temp_num, time.time(),
+                                                                        collections_temp_counter_results,
+                                                                        collection_temp_positive_results,
+                                                                        collection_temp_neutral_results,
+                                                                        collection_temp_negative_results)
+                collections_temp_tweets_results = {}
+                collections_temp_counter_results = {}
+                collection_temp_positive_results = {}
+                collection_temp_negative_results = {}
+                collection_temp_neutral_results = {}
+                tweets_temp_num = 0
+                first_temp_time = now_timestamp
+            analyzed_tweet = set_analyzed_tweets_by_temp.next()
+
 
     def analyze_tags_without_collections(self):
         pass

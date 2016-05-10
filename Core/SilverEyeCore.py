@@ -27,6 +27,9 @@ class SilverEye:
     def analyze_tweet(self, tweet):
         self.analysis_controller.analyze_tweet(tweet)
 
+    def analyse_temporal_time(self, init_time=0):
+        self.analysis_controller.analyse_temporal_lines(init_time)
+
 if __name__ == "__main__":
     silver_eye = SilverEye("127.0.0.1", 27017, "Test")
 

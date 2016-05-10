@@ -18,14 +18,26 @@ class AnalyzedTweets:
         self.analyzed_tweets.update({"user_id": user_id, "tweet_id": tweet_id}, {"$set": {"polarity": polarity}}, upsert=True)
         self.analyzed_tweets.update({"user_id": user_id, "tweet_id": tweet_id}, {"$set": {"text": text}}, upsert=True)
 
-    def get_analyzed_tweets(self, init, finish):
-        return self.analyzed_tweets.find()[init:finish]
+    def get_analyzed_tweets(self):
+        return self.analyzed_tweets.find().sort("timestamp", pymongo.ASCENDING)
 
     def get_size(self):
         return self.analyzed_tweets.count()
 
+    # TODO not work well....
     def get_analyzed_tweets_by_dates(self, timestamp_init, timestamp_end):
-        return self.analyzed_tweets.find({"timestamp": {"$gte": timestamp_init, "$lte": timestamp_end}})
+        return self.analyzed_tweets.find({"timestamp": {"$gte": str(timestamp_init), "$lte": str(timestamp_end)}})
 
     def get_tweets_by_user(self, user_id):
         return self.analyzed_tweets.find({"user_id": {"$eq": user_id}})
+
+    def get_first_and_last_timestamp(self):
+
+        last = list(self.analyzed_tweets.find().sort("timestamp", pymongo.DESCENDING))[0]
+        last = last["timestamp"]
+
+        first = list(self.analyzed_tweets.find().sort("timestamp", pymongo.ASCENDING))[0]
+        first = first["timestamp"]
+
+        return {"first": first, "last": last}
+
