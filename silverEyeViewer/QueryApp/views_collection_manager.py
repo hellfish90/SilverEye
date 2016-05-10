@@ -1,11 +1,9 @@
-
-from pymongo import MongoClient
-from django.shortcuts import render
 from django.shortcuts import redirect
+from django.shortcuts import render
+from pymongo import MongoClient
 
+from Core.CollectionClassifierController import CollectionClassifier
 from Utils.generate_circle_collections_tags import generate_flare
-from Utils.collection_classifier import CollectionClassifier
-
 from .forms import TagsForm, CollectionsForm
 
 server = '127.0.0.1'

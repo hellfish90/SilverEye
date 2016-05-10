@@ -59,4 +59,4 @@ docs/_build/
 # PyBuilder
 target/
 
-silverEyeViewer/QueryApp/Config/config.json
+Core/Config/config.json

@@ -1,8 +1,8 @@
 
 # -*- coding: utf-8 -*-
 from pymongo import MongoClient
-from extractor_manager import Extractor
-from collection_classifier import CollectionClassifier
+
+from Core.CollectionClassifierController import CollectionClassifier
 
 
 def generate_flare():

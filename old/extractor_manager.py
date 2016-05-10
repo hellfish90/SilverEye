@@ -2,19 +2,15 @@
 
 import json
 import logging
-
-import pymongo
-import tweepy
-
 import threading
 
+import tweepy
 # Max 400 keywords
 
 # https://dev.twitter.com/streaming/overview/request-parameters
 
-from extractor_twitter import ExtractorTwitterListener
-import dummy_tags
-from DAOTags import DAOTags
+from old.extractor_twitter import ExtractorTwitterListener
+import Core.load_dummy_tags
 
 logging.basicConfig(
     filename='QueryApp/Log/extractor.log',
@@ -43,8 +39,6 @@ class Extractor:
         self.tags_db = self.db.SilverEye.SelectedTags
         self.unclassified_tags_db = self.db.SilverEye.UnclassifiedEntities
 
-
-
     def load_objective_tags(self):
 
         self.ciudadanos = self.tags_db.find_one({"_id": "ciudadanos"})['tags']
@@ -59,15 +53,15 @@ class Extractor:
 
     def load_in_db_the_init_tags_for_capture(self):
 
-        self.tags_db.update({"_id": "ciudadanos"}, {'tags': dummy_tags.ciudadanos}, upsert=True)
-        self.tags_db.update({"_id": "democracia_llibertat"}, {'tags': dummy_tags.democracia_llibertat}, upsert=True)
-        self.tags_db.update({"_id": "ehbildu"}, {'tags': dummy_tags.ehbildu}, upsert=True)
-        self.tags_db.update({"_id": "erc"}, {'tags': dummy_tags.erc}, upsert=True)
-        self.tags_db.update({"_id": "podemos"}, {'tags': dummy_tags.podemos}, upsert=True)
-        self.tags_db.update({"_id": "pp"}, {'tags': dummy_tags.pp}, upsert=True)
-        self.tags_db.update({"_id": "psoe"}, {'tags': dummy_tags.psoe}, upsert=True)
-        self.tags_db.update({"_id": "unio"}, {'tags': dummy_tags.unio}, upsert=True)
-        self.tags_db.update({"_id": "upyd"}, {'tags': dummy_tags.upyd}, upsert=True)
+        self.tags_db.update({"_id": "ciudadanos"}, {'tags': Core.load_dummy_tags.ciudadanos}, upsert=True)
+        self.tags_db.update({"_id": "democracia_llibertat"}, {'tags': Core.load_dummy_tags.democracia_llibertat}, upsert=True)
+        self.tags_db.update({"_id": "ehbildu"}, {'tags': Core.load_dummy_tags.ehbildu}, upsert=True)
+        self.tags_db.update({"_id": "erc"}, {'tags': Core.load_dummy_tags.erc}, upsert=True)
+        self.tags_db.update({"_id": "podemos"}, {'tags': Core.load_dummy_tags.podemos}, upsert=True)
+        self.tags_db.update({"_id": "pp"}, {'tags': Core.load_dummy_tags.pp}, upsert=True)
+        self.tags_db.update({"_id": "psoe"}, {'tags': Core.load_dummy_tags.psoe}, upsert=True)
+        self.tags_db.update({"_id": "unio"}, {'tags': Core.load_dummy_tags.unio}, upsert=True)
+        self.tags_db.update({"_id": "upyd"}, {'tags': Core.load_dummy_tags.upyd}, upsert=True)
 
     def init_twitter_extractor(self, silver_eye_core):
         self.twitter_extractor = self.TwitterExtractorThread(silver_eye_core, self.db)

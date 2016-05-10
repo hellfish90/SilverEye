@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+from pymongo import MongoClient
+from AnalysisController import AnalysisController
+from TwitterController import TwitterController
+from silverEyeViewer.QueryApp.DAO.DAOCollectionTags import DAOTags
+
+
+class SilverEye:
+
+    def __init__(self, server_ip, server_port, database):
+        self.client = MongoClient(server_ip, server_port, connect=True)
+        self.database = database
+
+        self.twitter_controller = TwitterController(self)
+        self.analysis_controller = AnalysisController(self.client, database)
+
+        self.dao_collection_tags = DAOTags(self.client, self.database)
+
+    def start(self):
+        keywords = self.dao_collection_tags.get_array_of_the_name_of_classified_tags()
+        print keywords
+        self.twitter_controller.start(keywords)
+
+    def stop(self):
+        self.twitter_controller.stop()
+
+    def analyze_tweet(self, tweet):
+        self.analysis_controller.analyze_tweet(tweet)
+
+if __name__ == "__main__":
+    silver_eye = SilverEye("127.0.0.1", 27017, "Test")
+
+    my_input = raw_input("Please press enter to start")
+    silver_eye.start()
+
+    my_input = raw_input("Please press enter to stop")
+    silver_eye.stop()
+
+    #TODO bucle que llegeixi un fitxer, si es 0 no paris, sino para, etc...

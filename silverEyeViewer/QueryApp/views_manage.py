@@ -1,10 +1,8 @@
-
-from Utils.extractor_manager import Extractor
-from pymongo import MongoClient
-from django.shortcuts import render
 from django.shortcuts import redirect
+from django.shortcuts import render
+from pymongo import MongoClient
 
-from Utils.core import SilverEye
+from old.core import SilverEye
 
 server = '127.0.0.1'
 

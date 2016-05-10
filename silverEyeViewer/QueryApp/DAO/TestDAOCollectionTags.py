@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+import unittest
+
 from pymongo import MongoClient
 
-from DAOTags import DAOTags
+from DAOCollectionTags import DAOTags
 
 ciudadanos = [u"@GirautaOficial" ,
             u"#AlbertRivera" ,
@@ -101,52 +103,56 @@ upyd = [u"@UPYD" ,
             u"@sryuriaguilar"]
 
 
-if __name__ == "__main__":
+class TestDAOCollectionTags(unittest.TestCase):
 
-    client = MongoClient('0.0.0.0', 27017, connect=True)
-    daoTags = DAOTags(client)
+    client = MongoClient("127.0.0.1", 27017, connect=True)
+    database_name = "Test"
 
-    daoTags.add_collection("ciudadanos")
-    for tag in ciudadanos:
-        daoTags.add_tag(tag, [])
-        daoTags.add_tag_to_collection("ciudadanos", tag)
+    def setUp(self):
+        self.client[self.database_name]['Tags'].delete_many({})
+        self.client[self.database_name]['CollectionsSet'].delete_many({})
+        pass
 
-    daoTags.add_collection("democracia_llibertat")
-    for tag in democracia_llibertat:
-        daoTags.add_tag(tag, [])
-        daoTags.add_tag_to_collection("democracia_llibertat", tag)
+    def add_tags_into_collection(self):
 
-    daoTags.add_collection("ehbildu")
-    for tag in ehbildu:
-        daoTags.add_tag(tag, [])
-        daoTags.add_tag_to_collection("ehbildu", tag)
+        daoTags = DAOTags(self.client, self.database_name)
 
-    daoTags.add_collection("erc")
-    for tag in erc:
-        daoTags.add_tag(tag, [])
-        daoTags.add_tag_to_collection("erc", tag)
+        daoTags.add_collection("ciudadanos")
+        for tag in ciudadanos:
+            daoTags.add_tag(tag, [])
+            daoTags.add_tag_to_collection("ciudadanos", tag)
 
-    daoTags.add_collection("podemos")
-    for tag in podemos:
-        daoTags.add_tag(tag, [])
-        daoTags.add_tag_to_collection("podemos", tag)
+        daoTags.add_collection("democracia_llibertat")
+        for tag in democracia_llibertat:
+            daoTags.add_tag(tag, [])
+            daoTags.add_tag_to_collection("democracia_llibertat", tag)
 
-    daoTags.add_collection("pp")
-    for tag in pp:
-        daoTags.add_tag(tag, [])
-        daoTags.add_tag_to_collection("pp", tag)
+        self.assertEqual(daoTags.get_size_collections(), 2)
+        self.assertEqual(daoTags.get_size_tags(), len(ciudadanos) + len(democracia_llibertat))
 
-    daoTags.add_collection("psoe")
-    for tag in psoe:
-        daoTags.add_tag(tag, [])
-        daoTags.add_tag_to_collection("psoe", tag)
+        for collections in daoTags.get_all_collection():
 
-    daoTags.add_collection("unio")
-    for tag in unio:
-        daoTags.add_tag(tag, [])
-        daoTags.add_tag_to_collection("unio", tag)
+            if collections['_id'] == "ciudadanos":
+                self.assertEqual(len(collections["tags"]), len(ciudadanos))
 
-    daoTags.add_collection("upyd")
-    for tag in upyd:
-        daoTags.add_tag(tag, [])
-        daoTags.add_tag_to_collection("upyd", tag)
+            if collections['_id'] == "democracia_llibertat":
+                self.assertEqual(len(collections["tags"]), len(democracia_llibertat))
+
+    def test_get_classified_tags(self):
+
+        daoTags = DAOTags(self.client, self.database_name)
+
+        daoTags.add_tag("No classified", [])
+
+        daoTags.add_collection("ciudadanos")
+        for tag in ciudadanos:
+            daoTags.add_tag(tag, [])
+            daoTags.add_tag_to_collection("ciudadanos", tag)
+
+        for collections in daoTags.get_all_collection():
+            if collections['_id'] == "ciudadanos":
+                self.assertEqual(len(collections["tags"]), len(ciudadanos))
+
+
+if __name__ == '__main__':
+    unittest.main()

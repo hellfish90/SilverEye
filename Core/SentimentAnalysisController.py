@@ -5,6 +5,8 @@
 import requests
 import time
 
+import os
+
 server_ip = "http://192.168.101.127"
 
 #URL_LANGUAGE_IDENTIFIER = "http://opener.olery.com/language-identifier"
@@ -45,20 +47,21 @@ URL_CONSTITUENT_PARSER = "http://192.168.101.127:1010"
 
 text = "el mundo se va a la mierda i aqui nadie hace nada maldito asco"
 
-f_NER = open('QueryApp/Log/NER.kaf', 'w')
+f_NER = open(os.path.dirname(os.path.dirname(__file__)) +'/Core/Log/NER.kaf', 'w')
 
-f_NED = open('QueryApp/Log/NED.kaf', 'w')
+f_NED = open(os.path.dirname(os.path.dirname(__file__)) +'/Core/Log/NED.kaf', 'w')
 
-f_COREFERENCE = open('QueryApp/Log/COREFERENCE.kaf', 'w')
+f_COREFERENCE = open(os.path.dirname(os.path.dirname(__file__)) +'/Core/Log/COREFERENCE.kaf', 'w')
 
-f_CONSTITUENT_PARSER = open('QueryApp/Log/CONSTITUENT_PARSER.kaf', 'w')
+f_CONSTITUENT_PARSER = open(os.path.dirname(os.path.dirname(__file__)) +'/Core/Log/CONSTITUENT_PARSER.kaf', 'w')
 
 
 def call_language_identifier(URL, data):
     session = requests.session()
     text= complementByInputKAFTrue(data)
 
-    r = requests.post(URL, headers={}, data=text, cookies={})
+    r = requests.post(URL, headers={}, data=text.encode('utf-8'), cookies={})
+
     return r._content
 
 def call_tokenizer(URL, data):
@@ -133,9 +136,9 @@ def call_constituent_parser(URL,data):
     r = requests.post(URL, headers={}, data=text, cookies={})
     return r._content
 
+
 def complementByInputKAFTrue(text):
     return "input=" + text + "&kaf=true"
-
 
 
 def print_polarity(data):
@@ -151,58 +154,83 @@ def get_polarity(data):
     return {"positive": positive, "negative": negative, "neutral": neutral}
 
 
+def analyze_text_and_get_polarity(text):
+
+    try:
+        sentiment = analyze_text(text)
+        polarity_aprox = get_aprox_polarity(sentiment)
+        return polarity_aprox
+
+    except Exception as exception:
+            # Oh well, reconnect and keep trucking
+            raise Exception("analyze_text_and_get_polarity->SentimentAnalysisController" +
+                                exception.message + str(exception.__class__)+"\nText:"+text)
 
 def analyze_text(text):
 
-    output_language_identifier = call_language_identifier(URL_LANGUAGE_IDENTIFIER, complementByInputKAFTrue(text))
-    #print output_language_identifier
+    try:
+        output_language_identifier = call_language_identifier(URL_LANGUAGE_IDENTIFIER, text)
+        #print output_language_identifier
+    except Exception as exception:
+                # Oh well, reconnect and keep trucking
+                raise Exception("SentimentAnalysisController->analyze_text->call_language_identifier" +
+                                exception.message + str(exception.__class__)+"\nText:"+text)
+    try:
+        output_tokenizer = call_tokenizer(URL_TOKENIZER, output_language_identifier)
+        #print output_tokenizer
 
-    output_tokenizer = call_tokenizer(URL_TOKENIZER, output_language_identifier)
-    #print output_tokenizer
+        output_pos_tagger = call_pos_tagger(URL_POSTAGGER,output_tokenizer)
+        #print output_pos_tagger
 
-    output_pos_tagger = call_pos_tagger(URL_POSTAGGER,output_tokenizer)
-    #print output_pos_tagger
-
-    output_constituency_parse = call_constituency_parse(URL_CONSTITUENCY_PARSE,output_pos_tagger)
-    #print output_constituency_parse
-
-
-    ''' Sentiment Analysis '''
-
-    output_polarity_tagger = call_polarity_tagger(URL_POLARITY_TAGGER,output_constituency_parse)
-    #print output_polarity_tagger
-
-    output_property_tagger = call_property_tagger(URL_PROPERTY_TAGGER,output_constituency_parse)
-    #print output_property_tagger
-
-    output_opinion_detector = call_opinion_detector(URL_OPINION_DETECTOR,output_constituency_parse)
-    #print output_opinion_detector
-
-    '''  '''
+        output_constituency_parse = call_constituency_parse(URL_CONSTITUENCY_PARSE,output_pos_tagger)
+        #print output_constituency_parse
 
 
-    result={}
+        ''' Sentiment Analysis '''
+
+        output_polarity_tagger = call_polarity_tagger(URL_POLARITY_TAGGER,output_constituency_parse)
+        #print output_polarity_tagger
+
+        output_property_tagger = call_property_tagger(URL_PROPERTY_TAGGER,output_constituency_parse)
+        #print output_property_tagger
+
+        output_opinion_detector = call_opinion_detector(URL_OPINION_DETECTOR,output_constituency_parse)
+        #print output_opinion_detector
+
+        '''  '''
 
 
-    result["polarity"] = get_polarity(output_polarity_tagger)
-    result["property"] = get_polarity(output_property_tagger)
-    result["opinion"] = get_polarity(output_opinion_detector)
+        result={}
 
-    return result
+
+        result["polarity"] = get_polarity(output_polarity_tagger)
+        result["property"] = get_polarity(output_property_tagger)
+        result["opinion"] = get_polarity(output_opinion_detector)
+
+        return result
+    except Exception as exception:
+                # Oh well, reconnect and keep trucking
+                raise Exception("analyze_text->SentimentAnalysisController->" + exception.message + str(exception.__class__))
+
 
 def get_aprox_polarity(sentiment):
-    negative = int(sentiment['opinion']['negative'])
-    negative = negative + int(sentiment['polarity']['negative'])
 
-    positive = int(sentiment['opinion']['positive'])
-    positive = positive + int(sentiment['polarity']['positive'])
+    try:
+        negative = int(sentiment['opinion']['negative'])
+        negative = negative + int(sentiment['polarity']['negative'])
 
-    if negative == positive:
-        return 0
-    elif negative > positive:
-        return -1
-    elif negative < positive:
-        return 1
+        positive = int(sentiment['opinion']['positive'])
+        positive = positive + int(sentiment['polarity']['positive'])
+
+        if negative == positive:
+            return 0
+        elif negative > positive:
+            return -1
+        elif negative < positive:
+            return 1
+    except Exception as exception:
+                # Oh well, reconnect and keep trucking
+                raise Exception("get_aprox_polarity->SentimentAnalysisController" + exception.message)
 
 if __name__ == '__main__':
 
