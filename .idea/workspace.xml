@@ -2,38 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f29b00ca-8bb5-46fb-b399-e32f8540225d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/silverEyeViewer/QueryApp/Core/Config/configuration.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/AnalysisController.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/CollectionClassifierController.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/Config/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/Config/config_production.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/Config/config_test.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/Config/install_opener" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/Config/requirements.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/Log/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/SentimentAnalysisController.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/SilverEyeCore.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/TestCollectionClassifierController.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/TwitterController.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/TwitterListener.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Core/load_dummy_tags.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loop_global_results.py" afterPath="$PROJECT_DIR$/loop_global_results.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/old/core.py" afterPath="$PROJECT_DIR$/old/core.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/old/extractor_manager.py" afterPath="$PROJECT_DIR$/old/extractor_manager.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silverEyeViewer/QueryApp/DAO/DAOCollectionTags.py" afterPath="$PROJECT_DIR$/silverEyeViewer/QueryApp/DAO/DAOCollectionTags.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silverEyeViewer/QueryApp/Utils/generate_circle_collections_tags.py" afterPath="$PROJECT_DIR$/silverEyeViewer/QueryApp/Utils/generate_circle_collections_tags.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/flare.json" afterPath="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/flare.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_collections.html" afterPath="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_collections.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_unclassified_tags.html" afterPath="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_unclassified_tags.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silverEyeViewer/QueryApp/templatetags/appname_tags.py" afterPath="$PROJECT_DIR$/silverEyeViewer/QueryApp/templatetags/appname_tags.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silverEyeViewer/QueryApp/views.py" afterPath="$PROJECT_DIR$/silverEyeViewer/QueryApp/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silverEyeViewer/QueryApp/views_collection_manager.py" afterPath="$PROJECT_DIR$/silverEyeViewer/QueryApp/views_collection_manager.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/silverEyeViewer/QueryApp/views_manage.py" afterPath="$PROJECT_DIR$/silverEyeViewer/QueryApp/views_manage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/start_silvereye.py" afterPath="$PROJECT_DIR$/start_silvereye.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/start_temporal_analysis.py" afterPath="$PROJECT_DIR$/start_temporal_analysis.py" />
     </list>
     <ignored path="SilverEye.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,31 +26,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="appname_tags.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/templatetags/appname_tags.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <caret line="121" column="21" selection-start-line="121" selection-start-column="15" selection-end-line="121" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list_collections.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views_collection_manager.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/views_collection_manager.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="95" column="66" selection-start-line="95" selection-start-column="56" selection-end-line="95" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list_collections.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_collections.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.875">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.75">
+              <caret line="37" column="93" selection-start-line="37" selection-start-column="93" selection-end-line="37" selection-end-column="93" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list_unclassified_tags.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_unclassified_tags.html">
+      <file leaf-file-name="tag_form.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/tag_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.06833713">
-              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DAOCollectionTags.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/DAO/DAOCollectionTags.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="93" column="29" selection-start-line="93" selection-start-column="29" selection-end-line="93" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -151,12 +143,12 @@
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/Core/AnalysisController.py" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/Core/SilverEyeCore.py" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/views.py" />
-        <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/views_collection_manager.py" />
-        <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/DAO/DAOCollectionTags.py" />
-        <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_collections.html" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/Utils/generate_circle_collections_tags.py" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_unclassified_tags.html" />
         <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/templatetags/appname_tags.py" />
+        <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/views_collection_manager.py" />
+        <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/DAO/DAOCollectionTags.py" />
+        <option value="$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_collections.html" />
       </list>
     </option>
   </component>
@@ -260,6 +252,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SilverEye" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SilverEye" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="silverEyeViewer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QueryApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DAO" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -535,7 +549,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329235" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32786885" sideWeight="0.49722" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329235" sideWeight="0.47815728" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329235" sideWeight="0.47815728" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -608,13 +622,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/Core/Config/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/loop_global_results.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -926,34 +933,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/DAO/DAOCollectionTags.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3703704">
-          <caret line="46" column="80" selection-start-line="46" selection-start-column="79" selection-end-line="46" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="14" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/views_manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="49" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/views_collection_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3703704">
-          <caret line="46" column="16" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -974,18 +957,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_collections.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.875">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_unclassified_tags.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06833713">
           <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="121" column="21" selection-start-line="121" selection-start-column="15" selection-end-line="121" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/tag_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/DAO/DAOCollectionTags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="93" column="29" selection-start-line="93" selection-start-column="29" selection-end-line="93" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/views_collection_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="95" column="66" selection-start-line="95" selection-start-column="56" selection-end-line="95" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/silverEyeViewer/QueryApp/templates/list_collections.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75">
+          <caret line="37" column="93" selection-start-line="37" selection-start-column="93" selection-end-line="37" selection-end-column="93" />
           <folding />
         </state>
       </provider>

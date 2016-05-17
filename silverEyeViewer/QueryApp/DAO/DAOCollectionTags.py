@@ -91,6 +91,7 @@ class DAOTags:
         self.add_tag(tag_name, [], True)
 
     def remove_tag_of_collection(self, collection_name, tag_name):
+        print collection_name
         self.collections_db.update_one({"_id": collection_name}, {"$pull": {"tags": tag_name}}, upsert=True)
         self.tags_db.update_one({"_id": tag_name}, {"$set": {"classified": False}})
 

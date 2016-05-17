@@ -35,7 +35,7 @@
                     <li class="collection-item deep-purple lighten-5">
                         <span style="margin-left: 10px;" class="collection-item black-text">{{tag|mongo_id}} -> {{ tag.repeat }} </span>
                         <div class="right" style="margin-top: -10px;">
-                            <a  href="/query/collections/tags/remove/{{ dict.keys.0}}/{{tag.values.1}}">
+                            <a  href="/query/collections/tags/remove/{{ dict|mongo_id}}/{{tag|mongo_id}}">
                                 <button class="btn waves-effect pink darken-1" type="submit" name="action">
                                      <i class="material-icons right">delete</i>
                                 </button>

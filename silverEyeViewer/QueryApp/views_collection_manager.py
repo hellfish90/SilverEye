@@ -36,7 +36,9 @@ def list_unclassified_tags(request):
 
 def add_tag_to_collection(request):
 
-    collections = get_dao_tags_collections().get_all_collection_names()
+    collections_set = get_dao_tags_collections().get_all_collection()
+
+    collections = [a["_id"] for a in collections_set]
 
 
     if request.method == 'POST':
