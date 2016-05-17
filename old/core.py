@@ -3,7 +3,6 @@
 from pymongo import MongoClient
 from silverEyeViewer.QueryApp.Utils.CollectionClassifierController import CollectionClassifier
 
-import Core.SentimentAnalysisController
 from old.extractor_manager import Extractor
 
 
@@ -43,8 +42,8 @@ class SilverEye:
 
         entities = self.collection_classifier.get_tags_of_tweet(text)
         political = self.collection_classifier.get_collection_by_tags(entities)
-        polarity = Core.SentimentAnalysisController.analyze_text(text)
-        polarity = Core.SentimentAnalysisController.get_aprox_polarity(polarity)
+        polarity = silverEyeViewer.QueryApp.Core.SentimentAnalysisController.analyze_text(text)
+        polarity = silverEyeViewer.QueryApp.Core.SentimentAnalysisController.get_aprox_polarity(polarity)
 
         destiny_data_db.update({'user': user, 'text': text}, {'user': user, "text": text, "coordinates": coordinates, \
                                                               'entities': entities, 'polarity': polarity, \

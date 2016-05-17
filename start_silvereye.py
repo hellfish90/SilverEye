@@ -1,7 +1,8 @@
 import json
-import sys
 import os
-from Core.SilverEyeCore import SilverEye
+import sys
+
+from silverEyeViewer.QueryApp.Core.SilverEyeCore import SilverEye
 
 
 def main(argv):

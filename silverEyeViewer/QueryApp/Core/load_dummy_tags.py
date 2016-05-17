@@ -3,7 +3,7 @@ from pymongo import MongoClient
 import os
 import sys
 sys.path.append( os.path.dirname(os.path.dirname(__file__)) )
-from silverEyeViewer.QueryApp.DAO.DAOCollectionTags import DAOTags
+from DAO.DAOCollectionTags import DAOTags
 
 ciudadanos = [u"@GirautaOficial" ,
             u"#AlbertRivera" ,
@@ -106,7 +106,7 @@ upyd = [u"@UPYD" ,
 if __name__ == "__main__":
 
     client = MongoClient('0.0.0.0', 27017, connect=True)
-    database = "Test"
+    database = "SilverEye"
     daoTags = DAOTags(client, database)
 
     daoTags.add_collection("ciudadanos")

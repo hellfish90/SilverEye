@@ -1,6 +1,8 @@
-from pymongo import MongoClient
 import time
-from Core.AnalysisController import AnalysisController
+
+from pymongo import MongoClient
+
+from silverEyeViewer.QueryApp.Core.AnalysisController import AnalysisController
 
 client = MongoClient("127.0.0.1", 27017, connect=True)
 

@@ -1,35 +1,46 @@
 
 # -*- coding: utf-8 -*-
+import os
+import sys
 from pymongo import MongoClient
 
-from Core.CollectionClassifierController import CollectionClassifier
+sys.path.append( os.path.dirname(os.path.dirname(__file__)) )
+from DAO.DAOCollectionTags import DAOTags
+from Core.Config.configuration import Configuration
+
 
 
 def generate_flare():
-    with open('QueryApp/templates/flare.json', 'w') as outfile:
 
-        client = MongoClient('0.0.0.0', 27017, connect=True)
-        collections = CollectionClassifier(client)
+    configuration = Configuration()
+    client = configuration.get_client()
+    database_name = configuration.get_database_name()
+    tags_collection_dao = DAOTags(client, database_name)
+
+
+    with open('QueryApp/templates/flare.json', 'w') as outfile:
         lines = []
 
-        collections = [a for a in collections.get_all_collections()]
+        collections = tags_collection_dao.get_all_collection()
         last_collection = len(collections)
 
         outfile.write("{\"name\":\"SilverEye\",\n")
         outfile.write("\"children\":[")
 
         for collection in collections:
-            collection_name =list(collection)[0]
-            #print collection
+
+            collection_name = str(collection["_id"])
+
             outfile.write("{\n")
             outfile.write("\"name\":\""+collection_name+"\",\n")
             outfile.write("\"children\": [\n")
 
-            if len(collection[collection_name])>0:
+            if len(collection["tags"]) > 0:
 
-                last_tag = len(collection[collection_name])
+                last_tag = len(collection["tags"])
 
-                for tag in collection[collection_name]:
+                for tag in collection["tags"]:
+
                     if last_tag > 1:
                         outfile.write("{\"name\": \""+tag["_id"].encode("utf-8")+"\", \"size\": "+str((tag["repeat"]*100)+100)+"},\n")
                     else:
@@ -40,9 +51,9 @@ def generate_flare():
             else:
                 outfile.write("]\n")
 
-            if last_collection>1:
+            if last_collection > 1:
                 outfile.write("},\n")
             else:
                 outfile.write("}\n")
-            last_collection -=1
+            last_collection -= 1
         outfile.write("]}")

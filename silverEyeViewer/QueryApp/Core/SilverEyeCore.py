@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
+
+sys.path.append( os.path.dirname(os.path.dirname(__file__)) )
 from pymongo import MongoClient
 from AnalysisController import AnalysisController
 from TwitterController import TwitterController
@@ -18,7 +22,6 @@ class SilverEye:
 
     def start(self):
         keywords = self.dao_collection_tags.get_array_of_the_name_of_classified_tags()
-        print keywords
         self.twitter_controller.start(keywords)
 
     def stop(self):

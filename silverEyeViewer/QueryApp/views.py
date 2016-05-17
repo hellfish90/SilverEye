@@ -28,7 +28,6 @@ def text_analysis(request):
             # ...
             # redirect to a new URL:
             results = opener.analyze_text(form.data['data'])
-            print results
 
             return render(request, 'sentimentQuery.html', {'form': form, 'results': results, 'text': form.data['data']})
 
@@ -72,8 +71,6 @@ def list_twitter_status(request, limitnumber=0, maxnumber=150):
     dataSend = []
 
     for tweet in data:
-        print tweet['text']
-        print tweet['place']
 
         text = tweet['text'].encode('utf8')
 
@@ -125,7 +122,7 @@ def global_results(request):
     db_result= client.SilverEye.TestGlobalResult
 
     global_results = db_result.find_one({"unique": "unique"})
-    print global_results
+
 
     return render(request, 'globalResults.html', {'global': global_results})
 

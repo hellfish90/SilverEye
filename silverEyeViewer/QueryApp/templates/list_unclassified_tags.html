@@ -1,5 +1,6 @@
 {% extends "BaseSite.html" %}
-{%block content %}
+{% block content %}
+{% load appname_tags %}
 
     <div id="image_collection" class="card-panel deep-purple lighten-2">
           <span class="white-text">Unclassified Tags</span>
@@ -10,7 +11,7 @@
         <li>
           <div class="collapsible-header">
             <div class="card-panel deep-purple lighten-3">
-                <span class="black-text">{{unclassified_tag.values.1 }}</span>
+                <span class="black-text">{{unclassified_tag|mongo_id}}</span>
               <span class="right">{{unclassified_tag.repeat}}</span>
             </div>
           </div>

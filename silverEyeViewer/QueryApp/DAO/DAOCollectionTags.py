@@ -10,8 +10,23 @@ class DAOTags:
         self.tags_db = self.mongo_client[database]['Tags']
         self.collections_db = self.mongo_client[database]['CollectionsSet']
 
+    def get_tag_by_id(self, tag_id):
+        return self.tags_db.find_one({"_id": {"$eq": tag_id}})
+
     def get_all_collection(self):
-        return self.collections_db.find()
+
+        collections = self.collections_db.find()
+        complete_collections = []
+
+        for collection in collections:
+            tags = []
+            for tag in collection["tags"]:
+                cmpl_tag = self.get_tag_by_id(tag)
+                tags.append(cmpl_tag)
+            collection["tags"] = tags
+            complete_collections.append(collection)
+
+        return complete_collections
 
     def get_all_tags(self):
         return self.tags_db.find()

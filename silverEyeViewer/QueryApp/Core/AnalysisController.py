@@ -1,7 +1,9 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 import time
+
 from pymongo import MongoClient
+
 import SentimentAnalysisController
 from CollectionClassifierController import CollectionClassifierController
 from silverEyeViewer.QueryApp.DAO.DAOAnalyzedTweets import AnalyzedTweets
@@ -181,9 +183,6 @@ class AnalysisController:
         first_temp_time = now_timestamp
 
         while tweets_num < total_tweets:
-            print now_timestamp
-            print last_temp_time
-            print "\n"
             tweets_temp_num += 1
             tweets_num += 1
 
@@ -218,7 +217,6 @@ class AnalysisController:
                         collection_temp_neutral_results[collection] = 1
 
             if long(now_timestamp) > last_temp_time:
-                print "New________________"
 
                 last_temp_time = periode_time + long(now_timestamp)
 

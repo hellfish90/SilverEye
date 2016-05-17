@@ -1,47 +1,43 @@
+import os
+import sys
+sys.path.append( os.path.dirname(os.path.dirname(__file__)) )
+from DAO.DAOCollectionTags import DAOTags
+from Core.Config.configuration import Configuration
 from django.shortcuts import redirect
 from django.shortcuts import render
-from pymongo import MongoClient
-
-from Core.CollectionClassifierController import CollectionClassifier
 from Utils.generate_circle_collections_tags import generate_flare
 from .forms import TagsForm, CollectionsForm
+from Core import CollectionClassifierController
 
-server = '127.0.0.1'
 
-port = 27017
+def get_dao_tags_collections():
+    configuration = Configuration()
+    client = configuration.get_client()
+    database_name = configuration.get_database_name()
+    return DAOTags(client, database_name)
 
 
 def list_collections(request):
-    client = MongoClient(server, port, connect=True)
-    collection_manager = CollectionClassifier(client)
 
-    collections = collection_manager.get_all_collections()
+    collections = get_dao_tags_collections().get_all_collection()
     generate_flare()
-
-    print collections
 
     return render(request, 'list_collections.html', {'collections': collections})
 
 
 def list_unclassified_tags(request):
-    client = MongoClient(server, port, connect=True)
-    collection_manager = CollectionClassifier(client)
 
-    tags = collection_manager.get_all_unclassified_tags()
+    tags = get_dao_tags_collections().get_unclassified_tags()
     generate_flare()
 
-    print tags
 
     return render(request, 'list_unclassified_tags.html', {'unclassified_tags': tags})
 
 
 def add_tag_to_collection(request):
 
-    client = MongoClient(server, port, connect=True)
-    collection_manager = CollectionClassifier(client)
+    collections = get_dao_tags_collections().get_all_collection_names()
 
-    collections = collection_manager.get_all_collection_names()
-    print collections
 
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -52,9 +48,8 @@ def add_tag_to_collection(request):
             # ...
             # redirect to a new URL:
 
-            print form.data['collection']
 
-            collection_manager.add_tag_to_collection(form.data['collection'], form.data['name'])
+            get_dao_tags_collections().add_tag_to_collection(form.data['collection'], form.data['name'])
 
             return redirect('/query/collections/')
 
@@ -67,9 +62,6 @@ def add_tag_to_collection(request):
 
 def add_collection(request):
 
-    client = MongoClient(server, port, connect=True)
-    collection_manager = CollectionClassifier(client)
-
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = CollectionsForm(request.POST)
@@ -79,7 +71,7 @@ def add_collection(request):
             # ...
             # redirect to a new URL:
 
-            collection_manager.add_collection(form.data['name'])
+            get_dao_tags_collections().add_collection(form.data['name'])
 
             return redirect('/query/collections/')
 
@@ -92,21 +84,13 @@ def add_collection(request):
 
 def remove_collection(request, id):
 
-    client = MongoClient(server, port, connect=True)
-    collection_manager = CollectionClassifier(client)
-    collection_manager.remove_collection(id)
+    get_dao_tags_collections().remove_collection(id)
 
     return redirect('/query/collections/')
 
 
 def remove_tag(request, collection, tag):
 
-    client = MongoClient(server, port, connect=True)
-    collection_manager = CollectionClassifier(client)
-
-    print collection
-    print tag
-
-    collection_manager.remove_tag_of_collection(collection, tag)
+    get_dao_tags_collections().remove_tag_of_collection(collection, tag)
 
     return redirect('/query/collections/')
