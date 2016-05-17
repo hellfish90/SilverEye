@@ -5,8 +5,8 @@ import sys
 from pymongo import MongoClient
 
 sys.path.append( os.path.dirname(os.path.dirname(__file__)) )
-from DAO.DAOCollectionTags import DAOTags
-from Core.Config.configuration import Configuration
+from QueryApp.Core.DAO.DAOCollectionTags import DAOTags
+from QueryApp.Core.Config.configuration import Configuration
 
 
 

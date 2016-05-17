@@ -4,7 +4,7 @@ import unittest
 
 from pymongo import MongoClient
 
-from silverEyeViewer.QueryApp.DAO import TwitterCounter
+from silverEyeViewer.QueryApp.Core.DAO import TwitterCounter
 
 
 class TestDAOTwitterCounter(unittest.TestCase):

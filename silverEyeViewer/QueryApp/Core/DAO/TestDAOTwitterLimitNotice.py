@@ -4,7 +4,7 @@ import unittest
 
 from pymongo import MongoClient
 
-from silverEyeViewer.QueryApp.DAO.DAOLimitNotice import LimitNotice
+from silverEyeViewer.QueryApp.Core.DAO import LimitNotice
 
 
 class TestDAOTwitterLimitNotice(unittest.TestCase):

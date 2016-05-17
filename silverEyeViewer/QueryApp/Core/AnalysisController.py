@@ -3,16 +3,16 @@
 import time
 
 from pymongo import MongoClient
+from DAO.DAOAnalyzedTweets import AnalyzedTweets
+from DAO.DAOLastTweet import LastTweet
+from DAO.DAOTweets import Tweets
+from DAO.DAOTwitterCounter import TemporalTwitterAnalysis
+from DAO.DAOTwitterUsers import TwitterUsers
+from DAO.DAOUsersAnalyzed import UsersAnalyzed
+from DAO.DAOGlobalResults import GlobalResults
 
 import SentimentAnalysisController
 from CollectionClassifierController import CollectionClassifierController
-from silverEyeViewer.QueryApp.DAO.DAOAnalyzedTweets import AnalyzedTweets
-from silverEyeViewer.QueryApp.DAO.DAOGlobalResults import GlobalResults
-from silverEyeViewer.QueryApp.DAO.DAOLastTweet import LastTweet
-from silverEyeViewer.QueryApp.DAO.DAOTweets import Tweets
-from silverEyeViewer.QueryApp.DAO.DAOTwitterCounter import TemporalTwitterAnalysis
-from silverEyeViewer.QueryApp.DAO.DAOTwitterUsers import TwitterUsers
-from silverEyeViewer.QueryApp.DAO.DAOUsersAnalyzed import UsersAnalyzed
 
 
 class AnalysisController:
@@ -242,7 +242,7 @@ class AnalysisController:
 if __name__ == '__main__':
 
     client = MongoClient("127.0.0.1", 27017, connect=True)
-    database_name = "Test"
+    database_name = "SilverEye"
 
     analysis_controller = AnalysisController(client, database_name)
     analysis_controller.overall_analysis()

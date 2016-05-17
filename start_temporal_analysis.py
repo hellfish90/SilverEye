@@ -7,7 +7,7 @@ from silverEyeViewer.QueryApp.Core.SilverEyeCore import SilverEye
 
 
 def main(argv):
-    if len(argv)<1:
+    if len(argv) < 1:
         show_error_message_and_exit()
 
     inputfile = str(argv[0])

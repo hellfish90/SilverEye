@@ -1,9 +1,6 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
-import sys
-import os
-sys.path.append( os.path.dirname(os.path.dirname(__file__)) )
-from QueryApp.DAO.DAOCollectionTags import DAOTags
+from DAO.DAOCollectionTags import DAOTags
 
 
 class CollectionClassifierController:

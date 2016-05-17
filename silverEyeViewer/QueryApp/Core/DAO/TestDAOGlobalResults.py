@@ -3,7 +3,7 @@ import unittest
 
 from pymongo import MongoClient
 
-from silverEyeViewer.QueryApp.DAO.DAOGlobalResults import GlobalResults
+from silverEyeViewer.QueryApp.Core.DAO.DAOGlobalResults import GlobalResults
 
 
 class TestDAOGlobalResults(unittest.TestCase):

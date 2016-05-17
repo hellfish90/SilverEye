@@ -3,7 +3,7 @@ import unittest
 
 from pymongo import MongoClient
 
-from silverEyeViewer.QueryApp.DAO import LastTweet
+from silverEyeViewer.QueryApp.Core.DAO import LastTweet
 
 example_tweet = {
     "contributors" : None,

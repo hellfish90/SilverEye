@@ -1,13 +1,12 @@
 import os
 import sys
 sys.path.append( os.path.dirname(os.path.dirname(__file__)) )
-from DAO.DAOCollectionTags import DAOTags
+from Core.DAO.DAOCollectionTags import DAOTags
 from Core.Config.configuration import Configuration
 from django.shortcuts import redirect
 from django.shortcuts import render
 from Utils.generate_circle_collections_tags import generate_flare
 from .forms import TagsForm, CollectionsForm
-from Core import CollectionClassifierController
 
 
 def get_dao_tags_collections():

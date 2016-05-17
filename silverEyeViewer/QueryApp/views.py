@@ -4,6 +4,8 @@
 
 from django.shortcuts import render
 
+from Core.Config.configuration import Configuration
+from Core.DAO.DAOGlobalResults import GlobalResults
 from .forms import AnalysisForm
 
 
@@ -117,14 +119,14 @@ def user_analized(request, id=0):
 
 def global_results(request):
 
-    client = MongoClient(server, port)
+    configuration = Configuration()
+    client = configuration.get_client()
+    database_name = configuration.get_database_name()
+    dao_global_results = GlobalResults(client, database_name)
 
-    db_result= client.SilverEye.TestGlobalResult
+    global_result = dao_global_results.get_global_results()
 
-    global_results = db_result.find_one({"unique": "unique"})
-
-
-    return render(request, 'globalResults.html', {'global': global_results})
+    return render(request, 'globalResults.html', {'global': global_result})
 
 
 ########

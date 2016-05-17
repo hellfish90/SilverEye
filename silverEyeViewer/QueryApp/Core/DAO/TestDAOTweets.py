@@ -3,7 +3,7 @@ import unittest
 
 from pymongo import MongoClient
 
-from silverEyeViewer.QueryApp.DAO import Tweets
+from silverEyeViewer.QueryApp.Core.DAO import Tweets
 
 example_tweet2 = {
     "_id" : "5645b9c0af705318078b35a8",

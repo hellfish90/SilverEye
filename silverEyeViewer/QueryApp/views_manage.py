@@ -1,13 +1,6 @@
-import os
-
-import sys
 from django.shortcuts import redirect
 from django.shortcuts import render
-from pymongo import MongoClient
-
-from DAO.DAOLastTweet import LastTweet
-
-sys.path.append( os.path.dirname(os.path.dirname(__file__)) )
+from Core.DAO.DAOLastTweet import LastTweet
 from Core.Config.configuration import Configuration
 
 

@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
-import os
-import sys
-
-sys.path.append( os.path.dirname(os.path.dirname(__file__)) )
 from pymongo import MongoClient
 from AnalysisController import AnalysisController
 from TwitterController import TwitterController
-from silverEyeViewer.QueryApp.DAO.DAOCollectionTags import DAOTags
+from DAO.DAOCollectionTags import DAOTags
 
 
 class SilverEye:
@@ -32,6 +28,9 @@ class SilverEye:
 
     def analyse_temporal_time(self, init_time=0):
         self.analysis_controller.analyse_temporal_lines(init_time)
+
+    def analyze_global_results(self):
+        self.analysis_controller.overall_analysis()
 
 if __name__ == "__main__":
     silver_eye = SilverEye("127.0.0.1", 27017, "Test")

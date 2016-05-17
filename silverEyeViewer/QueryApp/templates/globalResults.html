@@ -13,7 +13,7 @@ window.onload = function () {
 			// Change type to "doughnut", "line", "splineArea", etc.
 			type: "column",
 			dataPoints: [
-			    {% for key, values in global.result_political.items %}
+			    {% for key, values in global.result_collections.items %}
 
                     { label: "{{key}}",  y: {{values}} },
 
@@ -27,13 +27,14 @@ window.onload = function () {
 }
 </script>
 
-    <H1>Users: {{global.users}}</H1>
+    <H1>Users: {{global.users_num}}</H1>
+    <H1>Tweets: {{global.num_tweets}}</H1>
 
     <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
 
     <ul class="collection">
-    {% for key, values in global.political_counter.items %}
+    {% for key, values in global.collection_counter.items %}
 
         {% if values > 0 %}
             <li  class="collection-item"><h8>{{key}} <span class="badge"> {{values}}</span></h8></li>
