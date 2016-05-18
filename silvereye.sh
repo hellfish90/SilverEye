@@ -1,0 +1,1 @@
+python start_silvereye.py silverEyeViewer/QueryApp/Core/Config/config_production.json

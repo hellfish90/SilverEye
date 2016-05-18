@@ -1,1 +1,1 @@
-python start_temporal_analysis.py Core/Config/config_test.json
+python start_temporal_analysis.py silverEyeViewer/QueryApp/Core/Config/config_production.json

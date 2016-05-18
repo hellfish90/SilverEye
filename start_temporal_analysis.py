@@ -30,6 +30,7 @@ def main(argv):
 
     silver_eye.analyse_temporal_time()
 
+
 def show_error_message_and_exit():
     print "Bad source config file"
     print "Please: python start_silvereye <config_file_source>"
