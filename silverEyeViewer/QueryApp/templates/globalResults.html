@@ -6,7 +6,7 @@
 window.onload = function () {
 	var chart = new CanvasJS.Chart("chartContainer", {
 		title:{
-			text: "Political Analysis"
+			text: "Collection Sentiment Analysis"
 		},
 		data: [
 		{
@@ -27,12 +27,12 @@ window.onload = function () {
 }
 </script>
 
-    <H1>Users: {{global.users_num}}</H1>
-    <H1>Tweets: {{global.num_tweets}}</H1>
+    <H5>Users: {{global.users_num}}</H5>
+    <H5>Tweets: {{global.num_tweets}}</H5>
 
     <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
-
+    <H5>Tweets By Collection</H5>
     <ul class="collection">
     {% for key, values in global.collection_counter.items %}
 

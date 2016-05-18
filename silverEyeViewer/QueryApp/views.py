@@ -42,11 +42,10 @@ def text_analysis(request):
 
 def list_twitter_users(request, limitnumber=0, maxnumber=150):
 
-    #Dev
-    client = MongoClient(server, port)
-
-    #Prod
-    #client = MongoClient('127.0.0.1', 27017)
+    configuration = Configuration()
+    client = configuration.get_client()
+    database_name = configuration.get_database_name()
+    dao_global_results = User(client, database_name)
 
     limitnumber = int(limitnumber)
     maxnumber = int(maxnumber)

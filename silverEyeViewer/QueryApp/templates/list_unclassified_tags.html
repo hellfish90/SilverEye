@@ -31,6 +31,14 @@
                     <a class=" left collection-item"><span class="indigo-text">{{key}} <br> {{values}}</span></a>
                   {% endfor %}
               </div>
+
+              <div class=" collection">
+                  <h6>Suggested Collections</h6>
+                  {% for key, values in unclassified_tag.suggested_collection.items %}
+                    <a class=" left collection-item"><span class="indigo-text">{{key}}</span></a>
+                  {% endfor %}
+              </div>
+
           </div>
         </li>
         {% endfor %}
