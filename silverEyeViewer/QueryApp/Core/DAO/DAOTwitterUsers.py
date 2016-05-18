@@ -8,10 +8,10 @@ class TwitterUsers:
         self.twitter_users_collection = self.mongo_client[database]['TwitterUsers']
 
     def save_new_user(self, id, user):
-        self.twitter_users_collection.update({"_id": id},{"user": user}, upsert=True)
+        self.twitter_users_collection.update({"_id": id}, {"user": user}, upsert=True)
 
     def get_user_by_id(self, id):
-        return self.twitter_users_collection.find({"_id": {"$eq": id}})
+        return self.twitter_users_collection.find_one({"_id": {"$eq": id}})
 
     def get_size(self):
         return self.twitter_users_collection.count()

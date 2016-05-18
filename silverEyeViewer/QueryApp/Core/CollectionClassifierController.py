@@ -1,5 +1,7 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
+from pymongo import MongoClient
+
 from DAO.DAOCollectionTags import DAOTags
 
 
@@ -83,3 +85,35 @@ class CollectionClassifierController:
                 self.dao_tags.update_related_tags_and_plus_repeat(unclassified_tag, related_tags)
             else:
                 self.dao_tags.add_tag(unclassified_tag, related_tags)
+
+    def add_suggestions_collections(self):
+        unclassified_tags = self.dao_tags.get_unclassified_tags()
+        collections = {}
+
+        for tag in unclassified_tags:
+            for related_tag, repeat in tag["related"].iteritems():
+                related_tag_complete = self.dao_tags.get_tag_by_id(related_tag)
+                if related_tag_complete["classified"]:
+                    collection = self.dao_tags.get_the_collection_name_of_tag(related_tag)
+                    collection = collection["_id"]
+                    if collection in collections.keys():
+                        collections[collection][related_tag] = repeat
+                    else:
+
+                        collections[collection] = {}
+                        collections[collection][related_tag] = repeat
+                        collections[collection][related_tag] = repeat
+
+            self.dao_tags.add_suggested_collection_to_tag(tag["_id"], collections)
+            collections = {}
+
+if __name__ == '__main__':
+
+    client = MongoClient("127.0.0.1", 27017, connect=True)
+    database_name = "SilverEye"
+    coll_class_controller = CollectionClassifierController(client,database_name)
+
+    coll_class_controller.add_suggestions_collections()
+
+
+
